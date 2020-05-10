@@ -1,0 +1,40 @@
+.checkout-section{
+    padding: 50px 30px;
+    width: 100%;
+}
+.checkout-section .alert-danger{
+}
+.cart-table{
+    margin-bottom: 40px;
+}
+.cart-table table{
+    width: 100%;
+    /* min-width: 480px; */
+    border: 1px solid #ebebeb;
+}
+.cart-table table th{
+    font-size: 16px;
+    font-weight: 700;
+    color: #252525;
+    border-bottom: 1px solid #ebebeb;
+    text-align: center;
+    text-transform: uppercase;
+    padding:18px 0;
+}
+.cart-table table td{
+    text-align: center;
+    padding: 30px 10px;
+}
+.cart-table table th.p-name,.cart-table table td.p-name{
+    text-align: left;
+}
+.cart-table table td.p-name h5{
+    color: #252525;
+}
+.total{
+    border-top: 1px solid gray;
+}
+.total td{
+    color:#e7ab3c;
+    font-weight: 700;
+}

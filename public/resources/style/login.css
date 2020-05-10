@@ -1,0 +1,123 @@
+/*
+******Login Form
+*/
+.login-container img{
+    width: 100px;
+}
+.input-gp{
+	margin: 20px 0;
+	padding: 5px 0;
+	border-bottom: 2px solid #d9d9d9;
+    width: 90%;
+    height: 45px;
+    position: relative;
+}
+.input-gp:last-of-type{
+    margin-bottom: 10px;
+}
+.input-gp.focus label{
+    transform: translateY(-40px);
+    -webkit-transform: translateY(-40px);
+    -moz-transform: translateY(-40px);
+    -ms-transform: translateY(-40px);
+    -o-transform: translateY(-40px);
+}
+.input-gp i.fa-user,.input-gp i.fa-lock,.input-gp i.fa-envelope{
+    position: absolute;
+	left: 10px;
+    top: 50%;
+}
+.input-gp label{
+	position: absolute;
+	left: 40px;
+	top: 73%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-ms-transition: .3s;
+	-o-transition: .3s;
+}
+.input-gp i.fa-eye{
+    position: absolute;
+	right:10px;
+	top: 50%;
+	cursor: pointer;
+}
+
+.input{
+    width: 80%;
+	border: 0;
+	outline: 0;
+	background: none;
+    position: absolute;
+    left: 40px;
+	top: 45%;
+}
+a{
+	display: block;
+	text-decoration: none;
+	color: #999;
+	transition: .3s;
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-ms-transition: .3s;
+	-o-transition: .3s;
+}
+
+.login-btn{
+	display: block;
+	width: 70%;
+	padding: 15px;
+	background-image: linear-gradient(to right,#e7ab3c,#e7993c,#e7ab3c);
+	background-size: 200%;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	margin: 20px auto;
+	transition: 0.5s;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.login-btn:hover{
+    background-position: right;
+    opacity: 0.9;
+    
+}
+
+.or-seperator {
+    margin-top: px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+.or-seperator i {
+    padding: 0 10px;
+    background: #f7f7f7;
+    position: relative;
+    top: -11px;
+    z-index: 1;
+}   
+.social-btn .btn {
+    border: none;
+    margin: 10px 3px 0;
+    opacity: 1;
+}
+.social-btn .btn:hover {
+    opacity: 0.9;
+}
+.social-btn .btn-facebook {
+    background: #4267B2;
+}
+.social-btn .btn-google {
+    background: #df4930;
+}

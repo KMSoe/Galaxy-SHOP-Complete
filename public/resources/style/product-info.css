@@ -1,0 +1,246 @@
+.product-details-section{
+	padding: 80px 0;
+}
+.product-img img{
+	min-width: 100%;
+}
+
+.product-info{
+	
+}
+.product-info > div{
+	margin-bottom: 15px;
+}
+.product-info .pd-title h3{
+	color: #252525;
+	font-weight: 700;
+}
+.product-info .pd-description p{
+	color: #636363;
+}
+.product-info .pd-description h4{
+	color: #e7ab3c;
+	font-weight: 700;
+}
+.product-info .pd-description h4 del{
+	color: #b7b7b7;
+	font-weight: 400;
+	margin-left: 14px;
+	font-size: 18px;
+}
+.product-info .pd-quantity{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.product-info .pd-quantity .pro-qty{
+	width: 125px;
+	height: 45px;
+	line-height: 45px;
+	border: 2px solid #ebebeb;
+	padding: 0 15px;
+	margin-right: 14px;
+	float: left;
+}
+
+.product-info .pd-quantity .pro-qty .qtybtn{
+	width: 18px;
+	font-size: 24px;
+	color: #b2b2b2;
+	cursor: pointer;
+	float: left;
+}
+.product-info .pd-quantity .pro-qty .qtybtn.dec {
+	font-size: 30px;
+}
+
+.product-info .pd-quantity .pro-qty input{
+	text-align: center;
+	width: 52px;
+	font-size: 14px;
+	font-weight: 700;
+	border: none;
+	color: #4c4c4c;
+	line-height: 40px;
+	float: left;
+}
+.product-info .pd-quantity .pro-qty .inc{
+	float: left;
+}
+.product-info .pd-quantity .choose-text{
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 15px;
+}
+.pd-rating{
+	padding: 50px 10px;
+	border-right: 2px solid #eee;
+}
+.customer-reviews p{
+	color: #293f3b;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.customer-option .co-item{
+	margin-bottom: 20px;
+}
+.customer-option .co-item .avatar-info img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 15px;
+	float: left;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+}
+.customer-option .co-item h5{
+	display: inline-block;
+	width: 70%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	font-weight: 400;
+}
+.customer-option .co-item h5 span{
+	float: right;
+}
+.customer-option .co-item .avator-text{
+	padding: 10px;
+}
+.customer-option .co-item .avator-text .at-reply{
+	font-size: 14px;
+	color: #636363;
+}
+.your-rating{
+	padding: 50px 10px;
+}
+.your-rating > div{
+	margin-bottom: 15px;
+}
+.your-rating h5{
+	color: #293f3b;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.your-rating textarea{
+	padding:5px 10px;
+}
+/* .customer-review-option {
+	padding-top: 55px;
+}
+
+.customer-review-option h4 {
+	color: #292f3b;
+	font-weight: 700;
+	margin-bottom: 35px;
+}
+
+.customer-review-option .comment-option .co-item {
+	margin-bottom: 20px;
+}
+
+.customer-review-option .comment-option .co-item .avatar-pic {
+	float: left;
+	margin-right: 20px;
+}
+
+.customer-review-option .comment-option .co-item .avatar-pic img {
+	height: 63px;
+	width: 63px;
+	border-radius: 50%;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text {
+	display: table;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text .at-rating {
+	line-height: 9px;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text .at-rating i {
+	font-size: 12px;
+	display: inline-block;
+	color: #FAC451;
+	margin-right: -3px;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text h5 {
+	color: #252525;
+	font-weight: 700;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text h5 span {
+	color: #b2b2b2;
+	font-size: 12px;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-left: 22px;
+	position: relative;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text h5 span:before {
+	position: absolute;
+	left: -18px;
+	top: -5px;
+	content: "-";
+	font-size: 18px;
+	color: #b2b2b2;
+}
+
+.customer-review-option .comment-option .co-item .avatar-text .at-reply {
+	font-size: 14px;
+	color: #636363;
+}
+
+.customer-review-option .personal-rating {
+	margin-bottom: 50px;
+	padding-top: 10px;
+}
+
+.customer-review-option .personal-rating h6 {
+	color: #252525;
+}
+
+.customer-review-option .personal-rating .rating i {
+	font-size: 12px;
+	display: inline-block;
+	color: #FAC451;
+	margin-right: -3px;
+}
+
+.customer-review-option .leave-comment h4 {
+	color: #292f3b;
+	font-weight: 700;
+	margin-bottom: 35px;
+}
+
+.customer-review-option .leave-comment .comment-form input {
+	width: 100%;
+	font-size: 16px;
+	color: #636363;
+	height: 50px;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+	padding-left: 20px;
+	margin-bottom: 30px;
+}
+
+.customer-review-option .leave-comment .comment-form textarea {
+	width: 100%;
+	resize: none;
+	font-size: 16px;
+	color: #636363;
+	height: 116px;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+	padding-left: 20px;
+	padding-top: 10px;
+	margin-bottom: 45px;
+} */

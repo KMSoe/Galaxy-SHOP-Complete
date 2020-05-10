@@ -1,0 +1,51 @@
+
+@media screen and (max-width:575px){
+    .nav-item .nav-menu{
+        display: none;
+    }
+    .login-section .img,.forgot-password-section .img{
+        display: none;
+    }
+    .register-section .left-side{
+        display: none;
+    }
+    .container{
+        width: 100%;
+    }
+    .header-section{
+        width: 100%;
+    }
+    .footer-section{
+        /* width: 480px; */
+    }
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media screen and (min-width: 576px) { 
+    .login-section .img,.forgot-password-section .img{
+        display: none;
+    }
+    .register-section .left-side{
+        display: none;
+    }
+ }
+
+/* Medium devices (tablets, 768px and up)*/
+@media screen and (min-width: 768px) { 
+    .login-section .img,.forgot-password-section .img{
+        display: block;
+    }
+    .register-section .left-side{
+        display: block;
+    }
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media screen and (min-width: 992px) { 
+
+ }
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media screen and (min-width: 1200px) { 
+
+ }

@@ -1,0 +1,38 @@
+.order-section{
+    width: 100%;
+}
+.order-item{
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+}
+.order-item .customer-info{
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border-right: 1px solid #ccc;
+}
+.order-item .customer-info span,.order-item .customer-info b,.order-item .customer-info i{
+    display: block;
+    word-wrap: break-word;
+}
+.address{
+    /* margin-top: 17px; */
+}
+.order ul{
+    list-style: none;
+}
+.order ul li{
+    border-bottom: 1px solid #eee;
+}
+.order ul li a{
+    text-decoration: underline;
+}
+.order ul li .quantity{
+    margin-left: 15px;
+}
+.order ul li .bill{
+    float: right;
+}
+
+.order ul li:last-of-type{
+    margin-top: 15px;
+}
