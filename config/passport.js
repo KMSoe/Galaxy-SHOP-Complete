@@ -57,13 +57,17 @@ passport.use('local-signin',new LocalStrategy({
 }, async (req,email,password,done)=>{
     try {
         const [rows,fields]=await pool.query(`select * from users where email=?`,[email]);
-        
-        if((rows[0].email != email) && (rows[0].password != password)){
-            console.log('0');
-            return done(null,false,req.flash('errors',{msg: 'Invalid email or password' }));
+        console.log(rows[0]);
+        if(rows[0]){
+            if((rows[0].email != email) && (rows[0].password != password)){
+                console.log('0');
+                return done(null,false,req.flash('errors',{msg: 'Invalid email or password' }));
+            }
+            req.session.isLogin=true;
+            req.session.user=rows[0];
+            return done(null,rows[0]);
         }
-        
-        return done(null,rows[0]);
+        return done(null,false,req.flash('errors',{msg: 'Invalid email or password' }));
     } catch (error) {
         return done(null,error);
     }

@@ -1,6 +1,7 @@
 exports.getIndex=function(req, res) {
     res.render('index', { 
-      
+      isLogin:req.session.isLogin,
+      name: `${req.session.user.fname} ${req.session.user.lname}`
     });
 }
 exports.getShop=(req, res)=> {
@@ -23,13 +24,13 @@ exports.getSignup=(req,res)=>{
     });
 }
 exports.getForgotForm=(req,res)=>{
-    const error=req.flash('error');
+    const errors=req.flash('errors');
     const info=req.flash('info');
-    console.log(error,info);
+    
     res.render('forgot-form',{
-      error:error,
+      errors:errors,
       info:info,
-      hasError:error.length,
+      hasError:errors.length,
       hasInfo:info.length
     });
 }

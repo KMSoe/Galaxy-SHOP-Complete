@@ -61,7 +61,7 @@
 	top: 45%;
 }
 a{
-	display: block;
+	/* display: block; */
 	text-decoration: none;
 	color: #999;
 	transition: .3s;

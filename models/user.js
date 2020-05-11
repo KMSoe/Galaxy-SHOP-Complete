@@ -29,7 +29,7 @@ module.exports=class {
     }
     static async findUserByResetToken(token,time){
         try {
-            return await database.query(`select * from users where passwordResetToken=? && passwordResetExpires < ?`,[token,time]);
+            return await database.query(`select * from users where passwordResetToken=? && passwordResetExpires > ?`,[token,time]);
         } catch (error) {
             throw error;
         }

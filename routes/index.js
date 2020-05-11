@@ -55,7 +55,7 @@ router.get('/forgot-form',indexController.getForgotForm);
 router.post('/forgot',async (req,res)=>{
   const [rows,fields]=await User.findUser(req.body.email);
   if(!rows[0]){
-    req.flash('error',{msg:'Email not exists.'});
+    req.flash('errors',{msg:'Email not exists.'});
     return res.redirect('/forgot-form');
   }
   crypto.randomBytes(20,async (err,buf)=>{
@@ -89,7 +89,7 @@ router.post('/forgot',async (req,res)=>{
       } catch (error) {
         user.passwordResetToken = undefined;
         user.passwordResetExpires = undefined;
-        // await user.updateUser(email);
+        await user.updateUser(email);
         return res.redirect('/');
       }
       
@@ -98,12 +98,41 @@ router.post('/forgot',async (req,res)=>{
 });
 
 
-router.get('/resetPassword', (req,res)=>{
-  
-  res.render('reset',{
+router.get('/resetPassword/:token', async (req,res)=>{
+  try {
+    const [rows,fields]=await User.findUserByResetToken(req.params.token,new Date());
+    console.log(rows[0],new Date());
+    if(rows[0]){
+      return res.render('reset',{
+        token:req.params.token
+      });
+    }
+    req.flash('errors',{msg:'Invalid or Expire Token'});
+    return res.redirect('/forgot-form')
+  } catch (error) {
+    throw error;
+  }
+});
+
+
+router.post('/resetPassword/:token', async (req,res)=>{
+  try {
+    const pwd= await User.hashPassword(req.body.password);
+    const [rows,fields]=await User.findUserByResetToken(req.params.token,new Date());
     
-  });
-  
+    if(rows[0]){
+      const {fname,lname,email} =rows[0];
+      const user = new User(fname,lname,email,pwd,null,null);
+      const results=await user.updateUser(email);
+      if(results[0]){
+        return res.redirect('/')
+      }
+    }
+    // req.flash('errors',{msg:'Invalid or Expire Token'});
+    return res.redirect('/resetPassword/:token');
+  } catch (error) {
+    throw error;
+  }
 })
 
 module.exports = router;
