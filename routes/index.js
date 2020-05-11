@@ -1,14 +1,12 @@
 const express = require('express');
 const passport=require('passport');
+const indexController=require('../controllers/indexController');
 const {body,validationResult}=require('express-validator');
-const nodeMailer=require('nodemailer');
-// const smtpTransport=require('nodemailer-smtp-transport');
-const async=require('async');
 const crypto=require('crypto');
-const User=require('../models/user');
-const secret=require('../secret/secret');
+const User = require('../models/user');
+const sendEmail=require('../util/email');
 
-var router = express.Router();
+const router = express.Router();
 
 const validate = validations => {
   return async (req, res, next) => {
@@ -20,29 +18,19 @@ const validate = validations => {
     }
     req.flash('errors',errors.array());
     res.redirect('/sign-up');
-    // res.status(422).json({ errors: errors.array() });
   };
 };
 
 /* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { 
-    title: 'Express',
-    isLogin:req.session.isLogin,
-  });
-});
-router.get('/shop', function(req, res) {
-  res.render('shop', { 
-    
-  });
-});
-router.get('/sign-up',(req,res)=>{
-  const errors=req.flash('errors');
-  res.render('sign-up',{
-    errors:errors,
-    hasError:errors.length
-  });
-});
+router.get('/', indexController.getIndex);
+
+/* GET SHOP page. */
+router.get('/shop',indexController.getShop);
+
+/* GET Sign up page. */
+router.get('/sign-up',indexController.getSignup);
+
+/* Sign up. */
 router.post('/sign-up', validate([
   body('firstName').notEmpty(),
   body('lastName').notEmpty(),
@@ -55,97 +43,69 @@ router.post('/sign-up', validate([
   failureFlash:true
 }));
 
-router.get('/sign-in',(req,res)=>{
-  const errors=req.flash('errors');
-  res.render('sign-in',{
-    errors:errors,
-    hasError:errors.length
-  });
-});
+/*Sign in */
+router.get('/sign-in',indexController.getSignin);
 router.post('/sign-in',passport.authenticate('local-signin',{
   successRedirect:'/',
   failureRedirect:'/sign-in',
   failureFlash:true
 }));
-router.get('/forgot-form',(req,res)=>{
-  const error=req.flash('error');
-  const info=req.flash('info');
-  res.render('forgot-form',{
-    error:error,
-    info:info
-  });
-});
-router.post('/forgot',(req,res,next)=>{
-  async.waterfall([
-    function(callback){
-      crypto.randomBytes(20,(err,buf)=>{
-        const rand=buf.toString('hex');
-        callback(err,rand);
-      });
-    },
-    async function(rand,callback){
-      const [rows,fields]=await pool.query(`select * from users where email=?`,[req.body.email]);
-      if(!rows[0].email){
-        req.flash('error',{msg: 'Email is not exists' });
-        return res.redirect('/forgot-form');
-      }
-      rows[0].passwordResetToken=rand;
-      rows[0].passwordResetExpires=Date.now()+ 1000*60*60;
 
-      const user=new User(rows[0].fname,rows[0].lname,rows[0].email,rows[0].password,rows[0].passwordResetToken,rows[0].passwordResetExpires);
+router.get('/forgot-form',indexController.getForgotForm);
+router.post('/forgot',async (req,res)=>{
+  const [rows,fields]=await User.findUser(req.body.email);
+  if(!rows[0]){
+    req.flash('error',{msg:'Email not exists.'});
+    return res.redirect('/forgot-form');
+  }
+  crypto.randomBytes(20,async (err,buf)=>{
+    // const rand=buf.toString('hex');
+    // console.log(rand);
+    const expireTime=new Date().getTime() +1000*60*10;
+    const fname=rows[0].fname;
+    const lname=rows[0].lname;
+    const email=rows[0].email;
+    const password=rows[0].password;
+    const passwordResetToken = buf.toString('hex');
+    const passwordResetExpires=new Date(expireTime);
+
+    const user = new User(fname,lname,email,password,passwordResetToken,passwordResetExpires);
+    console.log(user);
+    const results=await user.updateUser(email);
+    if(results[0]){
+      //Send Email
+      const resetUrl = `${req.protocol}://${req.get('host')}/resetPassword/${passwordResetToken}`;
+
+      const message = `Forgot your password? Click this link.${resetUrl}`;
+      //To use axios
       try {
-        const rows=await user.updateUser();
-        if(rows[0]){
-          callback(rand, user);
-        }
+        await sendEmail({
+          email : email,
+          subject : `Your reset passowrd token (valid for 10 min)`,
+          message  : message
+        });
+        req.flash('info',{msg:`Reset Token is sent to email : ${email}`});
+        return res.redirect('/forgot-form');
       } catch (error) {
-          throw error;
-      } 
-    },
-    function(rand,user,callback){
-      const smtpTransport=nodeMailer.createTransport({
-        service:'Gmail',
-        auth:{
-          user:secret.auth.user,
-          pass:secret.auth.passowrd
-        }
-      });
-      const mailOption={
-        to:user.email,
-        from:`Galaxy <${secret.auth.user}>`,
-        subject:'Reset Token',
-        text:`htt`
-      };
-      smtpTransport.sendMail(mailOption,(err,response)=>{
-        req.flash('info',{msg:'Reset Token has been sent.'});
-        return callback(err,user);
-      });
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        // await user.updateUser(email);
+        return res.redirect('/');
+      }
+      
     }
-  ],err=>{
-    if(err){
-      return next(err);
-    }
-    res.redirect('/forgot-form')
   });
-
 });
+
+
+router.get('/resetPassword', (req,res)=>{
+  
+  res.render('reset',{
+    
+  });
+  
+})
 
 module.exports = router;
 
 
-// function validate(req,res,next){
-//   req.checkBody('firstName','first name is required').notEmpty();
-//   req.checkBody('lastName','last name is required').notEmpty();
-//   req.checkBody('email','Email is required').notEmpty();
-//   req.checkBody('password','Password must not be less than 5').isLength({min:5});
-
-//   const errors=req.validationErrors();
-//   if(errors){
-//     let messages=[];
-//     errors.forEach(error => {
-//       messages.push(error);
-//     });
-//   }
-//   req.flash('errors',messages);
-//   res.redirect('/');
-// }

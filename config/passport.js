@@ -36,13 +36,12 @@ passport.use('local-signup',new LocalStrategy({
                 const pwd=await User.hashPassword(password);
                 const newUser=new User(req.body.firstName,req.body.lastName,email,pwd);
                 const rows= await newUser.save();
-                if(rows[0]){
+                
+                if(rows[0].insertId){
                     return done(null, newUser);
                 }
             }
 
-            
-        
     } catch (error) {
         return done(null,error);
     }

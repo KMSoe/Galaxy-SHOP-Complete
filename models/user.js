@@ -9,7 +9,7 @@ module.exports=class {
         this.lastName=lastName;
         this.email=email;
         this.password=password;
-        this.passwordResetToken=this.passwordResetToken;
+        this.passwordResetToken=passwordResetToken;
         this.passwordResetExpires=passwordResetExpires;
     }
     async save(){
@@ -20,11 +20,26 @@ module.exports=class {
         }
          
     }
-    async updateUser(){
+    static async findUser(email){
         try {
-            return await database.execute(`update users set fname=?,lname=?,email=?,password=?,passwordResetToken=?,passwordResetExpires=?`,[his.firstName,this.lastName,this.email,this.password,this.passwordResetToken,this.passwordResetExpires]);
+            return await database.query(`select * from users where email=?`,[email]);
         } catch (error) {
-            
+            throw error;
+        }
+    }
+    static async findUserByResetToken(token,time){
+        try {
+            return await database.query(`select * from users where passwordResetToken=? && passwordResetExpires < ?`,[token,time]);
+        } catch (error) {
+            throw error;
+        }
+    }
+    async updateUser(email){
+        try {
+            console.log('Update');
+            return await database.execute(`update users set fname=?,lname=?,email=?,password=?,passwordResetToken=?,passwordResetExpires=? where email=?`,[this.firstName,this.lastName,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,email]);
+        } catch (error) {
+            throw error;
         }
     }
     static async hashPassword(password){

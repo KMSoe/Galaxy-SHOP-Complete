@@ -69,7 +69,8 @@ nav{
     box-shadow: rgba(0, 0, 0, 0.01) 0px 1px 1px,rgba(0, 0, 0, 0.08) 0 10px 30px;
 	z-index: 100000000000000;
 	width: 100%;
-    height: 70px;
+	height: 70px;
+	position: relative;
 }
 
 .brand{
@@ -120,14 +121,16 @@ nav{
     -o-transform: scale(1);
 }
 .main-navbar{
-	padding: 15px 0;
+	padding: 15px 0 0;
+	width: 60%;
+	float: left;
 	position: relative;
 }
 .main-nav{
     margin-left: 15px;
     display: inline-block;
-    list-style: none;
-    float: left;
+	list-style: none;
+	margin-bottom: 0;
 }
 .main-nav li{
 	float: left;
@@ -151,9 +154,10 @@ nav{
 .main-nav li a{
     color: #555;
 }
-.profile{
-	position: absolute;
-	right: 10px;
+.profile-part{
+	width: 8%;
+	position: absolute; 
+	right: 0px;
 	top: 10px;
 }
 .profile img{
@@ -179,18 +183,20 @@ nav{
 }
 @media screen and (max-width:767px){
     .brand{
-        width: 85%;
+		width: 85%;
+		float: none;
 	}
 	.brand form input{
 		width: 180px;
 	}
 	
-	.main-nav{
+	.main-navbar{
 		background-color: #eee;
-		margin-top: 10px;
+		/* margin-top: 10px; */
 		margin-left: 0;
 		width: 100%;
 		z-index: 10000;
+		clear: both;
 	}
 	.main-nav li a{
 		color: #222;
