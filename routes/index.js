@@ -46,10 +46,18 @@ router.post('/sign-up', validate([
 /*Sign in */
 router.get('/sign-in',indexController.getSignin);
 router.post('/sign-in',passport.authenticate('local-signin',{
-  successRedirect:'/',
+  // successRedirect:'/',
   failureRedirect:'/sign-in',
   failureFlash:true
-}));
+}),(req,res)=>{
+  console.log(req.body.rememberme);
+  if(req.body.rememberme){
+    req.session.cookie.maxAge = 1000*60*60*24;
+  }else{
+    req.session.cookie.expires = null;
+  }
+  res.redirect('/');
+});
 
 router.get('/forgot-form',indexController.getForgotForm);
 router.post('/forgot',async (req,res)=>{
@@ -133,7 +141,28 @@ router.post('/resetPassword/:token', async (req,res)=>{
   } catch (error) {
     throw error;
   }
-})
+});
+
+router.get('/auth/facebook',passport.authenticate('facebook-signup',{scope:'email'}));
+
+router.get('/auth/facebook/callback',passport.authenticate('facebook-signup',{
+  // successRedirect:'/sign-in',
+  failureRedirect:'/sign-up',
+  failureFlash:true
+}),(req,res)=>{
+  res.redirect('/');
+}
+);
+router.get('/auth/facebook/signin',passport.authenticate('facebook-signin',{scope:'email'}));
+
+router.get('/auth/facebook/signin/callback',passport.authenticate('facebook-signin',{
+  // successRedirect:'/sign-in',
+  failureRedirect:'/sign-up',
+  failureFlash:true
+}),(req,res)=>{
+  res.redirect('/');
+}
+);
 
 module.exports = router;
 

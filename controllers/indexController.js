@@ -1,7 +1,11 @@
 exports.getIndex=function(req, res) {
+  let name;
+  if(req.session.cookie.originalMaxAge){
+    name="Kaung Myat";
+  }
     res.render('index', { 
       isLogin:req.session.isLogin,
-      name: `${req.session.user.fname} ${req.session.user.lname}`
+      name: name
     });
 }
 exports.getShop=(req, res)=> {

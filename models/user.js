@@ -4,21 +4,30 @@ const bcrypt=require('bcryptjs');
 
 
 module.exports=class {
-    constructor(firstName,lastName,email,password,passwordResetToken,passwordResetExpires){
+    constructor(firstName,lastName,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken){
         this.firstName=firstName;
         this.lastName=lastName;
         this.email=email;
         this.password=password;
         this.passwordResetToken=passwordResetToken;
         this.passwordResetExpires=passwordResetExpires;
+        this.facebook = facebook;
+        this.fbtoken = fbtoken;
     }
     async save(){
         try {
-            return await database.execute('insert into users(fname,lname,email,password) values(?,?,?,?)',[this.firstName,this.lastName,this.email,this.password]);
+            return await database.execute('insert into users(fname,lname,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken) values(?,?,?,?,?,?,?,?)',[this.firstName,this.lastName,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,this.facebook,this.fbtoken]);
         } catch (error) {
             throw error;
         }
          
+    }
+    static async isSignFacebook(facebook){
+        try {
+            return await database.query(`select * from users where facebook=?`,[facebook]);
+        } catch (error) {
+            throw error;
+        }
     }
     static async findUser(email){
         try {
@@ -45,5 +54,9 @@ module.exports=class {
     static async hashPassword(password){
         return await bcrypt.hash(password,12);
     }
+    static async comparePassword(pass,hash){
+        return await bcrypt.compare(pass,hash);
+    }
+
     
 }

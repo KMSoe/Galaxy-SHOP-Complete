@@ -34,7 +34,7 @@ passport.use('local-signup',new LocalStrategy({
                 return done(null,false,req.flash('errors',{msg: 'Email is already exists.' }));
             }else{
                 const pwd=await User.hashPassword(password);
-                const newUser=new User(req.body.firstName,req.body.lastName,email,pwd);
+                const newUser=new User(req.body.firstName,req.body.lastName,email,pwd,'',new Date(),'','');
                 const rows= await newUser.save();
                 
                 if(rows[0].insertId){
@@ -58,10 +58,11 @@ passport.use('local-signin',new LocalStrategy({
     try {
         const [rows,fields]=await pool.query(`select * from users where email=?`,[email]);
         console.log(rows[0]);
+        const com=await User.comparePassword(password,rows[0].password);
+        console.log(com);
         if(rows[0]){
-            if((rows[0].email != email) && (rows[0].password != password)){
-                console.log('0');
-                return done(null,false,req.flash('errors',{msg: 'Invalid email or password' }));
+            if(!com){
+                return done(null,false,req.flash('errors',{msg: 'Invalid  or password' }));
             }
             req.session.isLogin=true;
             req.session.user=rows[0];
@@ -74,7 +75,6 @@ passport.use('local-signin',new LocalStrategy({
     
 })
 )
-
 
 
 

@@ -16,6 +16,7 @@ const flash=require('connect-flash');
 const database=require('./util/database');
 const dboptions=require('./util/dboptions');
 require('./config/passport');
+require('./config/passport-facebook');
 const User=require('./models/user');
 
 const routes = require('./routes/index');
