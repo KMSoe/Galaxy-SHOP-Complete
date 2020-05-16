@@ -14,16 +14,24 @@
                     <p>You can reset your password here.</p>
                     
                     <form action='/resetPassword/<%= token %>' method="POST">
-                        <div class="input-gp pb-4">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <label for="email"> Password</label>
-                            <input type="password" name="password" id="email" class="input d-block" >
+                        <div class="input-group">
+                            <div class="input-gp">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                <label for="confirmPassword">Confirm Password</label>
+                                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                                <input type="password" name="password" id="confirmPassword" class="input d-block">
+                            </div>
+                            <small id="confirmText" class="form-text text-left">Password does't match</small>
                         </div>
-                        <!-- <div class="input-gp pb-4">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <label for="email"> Password</label>
-                            <input type="password" name="email" id="email" class="input d-block" >
-                        </div> -->
+                        <div class="input-group">
+                            <div class="input-gp">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                <label for="confirmPassword">Confirm Password</label>
+                                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                                <input type="password" name="password" id="confirmPassword" class="input d-block">
+                            </div>
+                            <small id="confirmText" class="form-text text-left">Password does't match</small>
+                        </div>
                         <input type="submit" value="Recover my password" class="btn btn-primary mt-3 text-white">  
                     </form>
                 </div>

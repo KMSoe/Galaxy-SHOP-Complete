@@ -8,16 +8,51 @@ const sendEmail=require('../util/email');
 
 const router = express.Router();
 
-const validate = validations => {
+const signupValidate = validations => {
   return async (req, res, next) => {
     await Promise.all(validations.map(validation => validation.run(req)));
 
     const errors = validationResult(req);
-    if (errors.isEmpty()) {
-      return next();
+
+    if (!errors.isEmpty()) {
+      const err = errors.array();
+      console.log(err.find(e=> e.param==='firstName') ? 'invalid':'');
+      return res.status(422).render('sign-up',{
+        isLogin:req.session.isLogin,
+        errors:err,
+        hasError:err.length,
+        oldValues :{
+          firstName :req.body.firstName,
+          lastName :req.body.lastName,
+          email :req.body.email,
+          passowrd :req.body.passowrd,
+          confirmPassword :req.body.confirmPassword,
+        }
+      });
     }
-    req.flash('errors',errors.array());
-    res.redirect('/sign-up');
+    return next();
+  };
+};
+
+const signinValidate = validations => {
+  return async (req, res, next) => {
+    await Promise.all(validations.map(validation => validation.run(req)));
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const err = errors.array();
+      return res.status(422).render('sign-in',{
+        isLogin:req.session.isLogin,
+        errors:err,
+        hasError:err.length,
+        oldValues :{
+          email :req.body.email,
+          passowrd :req.body.passowrd,
+        }
+      });
+    }
+    return next();
   };
 };
 
@@ -31,12 +66,17 @@ router.get('/shop',indexController.getShop);
 router.get('/sign-up',indexController.getSignup);
 
 /* Sign up. */
-router.post('/sign-up', validate([
-  body('firstName').notEmpty(),
-  body('lastName').notEmpty(),
-  body('email').notEmpty(),
-  body('email').isEmail(),
-  body('password','Password must be minimum 5').isLength({ min: 6 })
+router.post('/sign-up', signupValidate([
+  body('firstName').notEmpty().trim().withMessage('First Name must be subbmit'),
+  body('lastName').notEmpty().trim().withMessage('Last Name must be subbmit'),
+  body('email').isEmail().normalizeEmail().withMessage('Invalid Email'),
+  body('password').trim().isLength({ min: 8 }).withMessage('Invalid Password'),
+  body('confirmPassword').custom((value,{req})=>{
+    if(value !== req.body.password){
+      throw new Error('Password have to match!!!');
+    }
+    return true;
+  })
 ]),passport.authenticate('local-signup',{
   successRedirect:'/sign-in',
   failureRedirect:'/sign-up',
@@ -163,7 +203,24 @@ router.get('/auth/facebook/signin/callback',passport.authenticate('facebook-sign
   res.redirect('/');
 }
 );
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['email','profile','openid'] }));
+
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/sign-up' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+
+router.get('/signout',(req,res)=>{
+  req.session.destroy((err)=>{
+    res.redirect('/');
+  })
+})
+
 
 module.exports = router;
 
-
+//AIzaSyCZXo4HSlfQ1M4tHYGr0Hvftwstpqt4978

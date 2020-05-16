@@ -4,7 +4,7 @@ const bcrypt=require('bcryptjs');
 
 
 module.exports=class {
-    constructor(firstName,lastName,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken){
+    constructor(firstName,lastName,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken,google){
         this.firstName=firstName;
         this.lastName=lastName;
         this.email=email;
@@ -13,6 +13,7 @@ module.exports=class {
         this.passwordResetExpires=passwordResetExpires;
         this.facebook = facebook;
         this.fbtoken = fbtoken;
+        this.google = google;
     }
     async save(){
         try {
@@ -25,6 +26,13 @@ module.exports=class {
     static async isSignFacebook(facebook){
         try {
             return await database.query(`select * from users where facebook=?`,[facebook]);
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async isSignGoogle(google){
+        try {
+            return await database.query(`select * from users where google=?`,[google]);
         } catch (error) {
             throw error;
         }

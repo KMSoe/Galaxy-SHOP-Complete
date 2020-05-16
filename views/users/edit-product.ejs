@@ -1,0 +1,66 @@
+<% layout('layout') %>
+<%- include('../partials/navbar.ejs') %>
+
+<!-- Login Section Begin -->
+<section class="edit-post-section">
+  <div class="container p-2">
+    <div class="row">
+      <div class="col-md-4 img text-left">
+        <img src="/resources/img/undraw_personalization_triu.svg" alt="" />
+      </div>
+      <div class="col-md-8 login-container">
+        <form action="/users/product/<%= product.id %>/edit" method="POST">
+          <div class="input-group">
+              <div class="input-gp focus">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <label for="pname"> Product Name</label>
+                  <input type="text" name="pname" id="pname"  class="input d-block" value="<%= product.name %>"
+                      autocomplete="off">
+              </div>
+          </div>
+          <div class="input-group">
+              <div class="input-gp focus">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <label for="price">Price</label>
+                  <input type="number" name="price" id="price"  class="input d-block" value="<%= product.price %>""
+                      autocomplete="off">
+              </div>
+          </div>
+          <div class="input-group">
+              <div class="input-gp focus">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <label for="discount"> Discount</label>
+                  <input type="number" name="discount" id="discount"  class="input d-block" value="<%= product.discount%>"autocomplete="off">
+              </div>
+              <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small>
+          </div>
+          <div class="input-group">
+            <div class="input-gp">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <label for="quantity"> Quantity</label>
+                <input type="number" name="quantity" id="quantity" class="input d-block" autocomplete="off">
+            </div>
+            <small id="emailHelp" class="form-text text-muted text-left">Minimum 1</small>
+        </div>
+          <div class="input-group">
+              <textarea name="description" placeholder="Description"  id="" cols="60" rows="10"></textarea>
+              <!-- <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small> -->
+          </div>
+          <input type="submit" value="Post Product" class="btn primary-btn login-btn mt-3 text-white">
+          
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Login Form Section End -->
+
+<%- include('../partials/footer.ejs') %>
+
+<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
+<script src="/vendors/JS/bootstrap.min.js"></script>
+<script src="/vendors/JS/owl.carousel.min.js"></script>
+<script src="/resources/JS/main.js"></script>
+<script>
+
+</script>

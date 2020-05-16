@@ -63,6 +63,8 @@ passport.use('facebook-signin',new FacebookStrategy({
         if(!rows[0]){
             return done(null,false,req.flash('errors',{msg:'Not exists.'}));
         }else{
+            req.session.user = rows[0];
+            req.session.isLogin = true;
             return done(null,true);
         }
     } catch (error) {

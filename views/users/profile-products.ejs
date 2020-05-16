@@ -1,0 +1,79 @@
+<% layout('layout') %>
+
+<%- include('../partials/navbar.ejs') %>
+<div id="wrapper" class="d-flex">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="profile-picture">
+            <img src="/resources/img/ipad-pro-2018.jpg" alt="">
+        </div>
+        <div class="sidebar-heading">Kaung Myat Soe</div>
+        <div class="list-group list-group-flush">
+            <a href="/profile" class="list-group-item list-group-item-action bg-light">My
+                Product</a>
+            <a href="./cart.html" class="list-group-item list-group-item-action bg-light">Cart</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Sell List</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Order List</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">My Info</a>
+            <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <section class="profile-section mx-auto">
+        <div class="container">
+            <div class="product-list">
+                <div class="row">
+                    <% if(products.length){ %>
+                        <% for(let product of products){ %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="product-item">
+                            <div class="product-picture text-center">
+                                <a href="/users/products/<%= product.id %>">
+                                    <img src="/resources/img/undraw_personalization_triu.svg" class="img-fluid"
+                                        alt="" />
+                                </a>
+                            </div>
+                            <div class="product-text text-center">
+                                <div class="category-name">
+                                    <em class="text-muted">Mobile Phones and Tablets</em>
+                                </div>
+                                <div class="product-name">
+                                    <h4><%= product.name %></h4>
+                                </div>
+                                <div class="product-price">$<%= product.price - product.discount %> <del>$<%= product.price %></del></div>
+                                <div class="seller-name">
+                                    <span>Sold By</span>
+                                    <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                </div>
+                                <div class="add-to-cart">
+                                    <a href="/users/products/<%= product.id %>/edit" >Edit</a>
+                                  <form action="/users/products/<%= product.id %>/delete" method="POST" class="d-inline-block">
+                                    <input type="hidden" />
+                                    <input type="submit"
+                                      value="Delete"
+                                      class="btn btn-danger text-white"
+                                    />
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <% } %>
+                    <% }else{ %>
+                        <h3>No product.</h3>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('../partials/footer.ejs') %>
+
+<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
+<script src="/vendors/JS/bootstrap.min.js"></script>
+<script src="/vendors/JS/owl.carousel.min.js"></script>
+<script src="/resources/JS/main.js"></script>
+<script>
+
+   
+</script>

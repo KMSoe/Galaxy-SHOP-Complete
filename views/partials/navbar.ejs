@@ -2,6 +2,7 @@
 
     <nav class="">
         <div class="brand">
+            <button class="navbar-toggler-icon" id="menu-toggle"></button>
             <a href="/" class="brand-text">
                 <img src="" alt="">
                 Galaxy
@@ -21,16 +22,22 @@
                     <a class="" href="/shop">SHOP</a>
                 </li>
                 <li class="">
-                    <a class="" href="#">Categories</a>
+                    <a class="" href="/users/post-product">Sell Now</a>
                 </li>
                 
                 <li class="">
                     <a class="" href="/sign-up">Sign up</a>
                 </li>
+                <% if(!isLogin){ %>
                 <li class="">
                     <a class="" href="/sign-in">Sign in</a>
                 </li>
-                
+                <% } %>
+                <% if(isLogin){ %>
+                    <li class="">
+                        <a class="" href="/signout">Sign out</a>
+                    </li>
+                    <% } %>
                 <!-- <li class="">
                 <a class="" href="#">Logout</a>
             </li> -->
@@ -44,7 +51,7 @@
 
         </div>
         <div class="profile-part">
-            <a href="" class="profile">
+            <a href="/users/profile" class="profile">
                 <img src="/resources/img/ipad-pro-2018.jpg" alt="">
             </a>
         </div>

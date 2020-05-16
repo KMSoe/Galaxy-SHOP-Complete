@@ -4,16 +4,42 @@
 .login-container img{
     width: 100px;
 }
+.input-group{
+	margin-bottom: 8px;
+}
+.input-group small{
+	width: 100%;
+	padding-left: 15px;
+	color: #666;
+}
 .input-gp{
-	margin: 20px 0;
+	margin: 2px 0;
 	padding: 5px 0;
 	border-bottom: 2px solid #d9d9d9;
     width: 90%;
     height: 45px;
-    position: relative;
+	position: relative;
+	display: block;
 }
-.input-gp:last-of-type{
-    margin-bottom: 10px;
+.input-group.invalid .input-gp{
+	border-bottom: 2px solid #ff0009;
+}
+.input-group.invalid small{
+	color: #ff0009;
+}
+.input-gp.focus::before,.input-gp.focus::after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 50%;
+	height: 2px;
+	background-color: #e7ab3c;
+}
+.input-gp.focus::before{
+	left: 50%;
+}
+.input-gp.focus::after{
+	right:  50%;
 }
 .input-gp.focus label{
     transform: translateY(-40px);
@@ -44,7 +70,7 @@
 	-ms-transition: .3s;
 	-o-transition: .3s;
 }
-.input-gp i.fa-eye{
+.input-gp i.toggleBtn{
     position: absolute;
 	right:10px;
 	top: 50%;
@@ -61,7 +87,6 @@
 	top: 45%;
 }
 a{
-	/* display: block; */
 	text-decoration: none;
 	color: #999;
 	transition: .3s;

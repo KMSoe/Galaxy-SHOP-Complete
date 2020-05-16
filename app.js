@@ -18,6 +18,7 @@ const dboptions=require('./util/dboptions');
 require('./config/passport');
 require('./config/passport-facebook');
 const User=require('./models/user');
+const Product=require('./models/product');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
@@ -87,6 +88,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

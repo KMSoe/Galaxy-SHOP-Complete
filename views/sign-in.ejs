@@ -18,19 +18,23 @@
           <% } %>
           <% } %>
           <form action="/sign-in" method="POST">
-            <div class="input-gp">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <label for="email"> Email</label>
-              <input type="email" name="email" id="email" class="input d-block" autocomplete="off" />
+            <div class="input-group">
+              <div class="input-gp">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <label for="email"> Email</label>
+                <input type="email" name="email" id="email" class="input d-block" autocomplete="off" />
+              </div>
             </div>
 
-            <div class="input-gp">
-              <i class="fa fa-lock" aria-hidden="true"></i>
-              <label for="password">Password</label>
-              <i class="fa fa-eye" aria-hidden="true"></i>
-              <input type="password" name="password" id="password" class="input" />
+            <div class="input-group">
+              <div class="input-gp">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <label for="password">Password</label>
+                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                <input type="password" name="password" id="password" class="input" />
+              </div>
+              <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small>
             </div>
-            <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small>
             <input type="checkbox" id="rememberme" name="rememberme" value="yes"> 
             <label for="rememberme">Remember me</label>
             <a href="/forgot-form" class="text-right">Forgot Password?</a>
