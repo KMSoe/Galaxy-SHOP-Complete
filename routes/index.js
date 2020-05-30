@@ -14,10 +14,13 @@ const signupValidate = validations => {
 
     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      const err = errors.array();
-      console.log(err.find(e=> e.param==='firstName') ? 'invalid':'');
+    if (errors.isEmpty()) {
+      return next();
+    }
+    const err = errors.array();
+      console.log(err);
       return res.status(422).render('sign-up',{
+        path:'/sign-up',
         isLogin:req.session.isLogin,
         errors:err,
         hasError:err.length,
@@ -26,11 +29,9 @@ const signupValidate = validations => {
           lastName :req.body.lastName,
           email :req.body.email,
           passowrd :req.body.passowrd,
-          confirmPassword :req.body.confirmPassword,
+          confirmPassword :req.body.confirmPassword
         }
       });
-    }
-    return next();
   };
 };
 
@@ -60,8 +61,8 @@ const signinValidate = validations => {
 router.get('/', indexController.getIndex);
 
 /* GET SHOP page. */
-router.get('/shop',indexController.getShop);
-
+router.get('/shop/products',indexController.getShop);
+router.get('/shop/products/detail/:productId',indexController.getProductDetail)
 /* GET Sign up page. */
 router.get('/sign-up',indexController.getSignup);
 

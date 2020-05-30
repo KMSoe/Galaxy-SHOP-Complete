@@ -1,113 +1,234 @@
 <% layout('layout') %>
 
-<%- include('./partials/navbar.ejs') %>
 
-<section class="hero-section">
-    <div class="hero-items owl-carousel">
-        <div class="single-hero-items">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h1>Galaxy SHOP</h1>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, aliquid.</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <%- include('./partials/side.ejs') %>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <header>
+                <%- include('./partials/navbar.ejs') %>
+            </header>
+            <section class="hero-section">
+                <div class="hero-items owl-carousel">
+                    <div class="single-hero-items">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h1>Galaxy SHOP</h1>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, aliquid.</p>
+                                    <a href="#" class="primary-btn">Shop Now</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="./resources/img/buy.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <img src="./resources/img/buy.jpg" alt="">
+                    <div class="single-hero-items">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h1>Happy SHOP</h1>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, aliquid.</p>
+                                    <a href="#" class="primary-btn">SHOP NOW</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="/resources/img/buy.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="single-hero-items">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h1>Happy SHOP</h1>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, aliquid.</p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="./resources/img/buy.jpg" alt="">
+            </section>
+            <section class="section-category mb-0 py-5" id="category">
+                <h2 class="text-center">Categories</h2>
+                <div class="container my-5">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="category-box p-3 text-center">
+                                <img src="./resources/img/electronic.jpeg" alt="">
+                                <div class="inner-text mt-4">
+                                    <h3>Eectronic</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section class="popular-product__section">
+                <div class="container">
+                    <h2 class="text-center">Popular Product</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="product-slider owl-carousel">
+                                <div class="product-item">
+                                    <div class="product-picture text-center">
+                                        <a href="/shop/products/detail/">
+                                            <img src="/resources/img/electronic.jpeg" class="img-fluid" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-text text-center">
+                                        <div class="category-name">
+                                            <em class="text-muted">Mobile Phone & Tablet</em>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>iPad Pro</h4>
+                                        </div>
+                                        <div class="product-price">$900
+                                            <del>$950</del></div>
+                                        <div class="seller-name">
+                                            <span>Sold By</span>
+                                            <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-picture text-center">
+                                        <a href="/shop/products/detail/">
+                                            <img src="/resources/img/electronic.jpeg" class="img-fluid" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-text text-center">
+                                        <div class="category-name">
+                                            <em class="text-muted">Mobile Phone & Tablet</em>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>iPad Pro</h4>
+                                        </div>
+                                        <div class="product-price">$900
+                                            <del>$950</del></div>
+                                        <div class="seller-name">
+                                            <span>Sold By</span>
+                                            <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-picture text-center">
+                                        <a href="/shop/products/detail/">
+                                            <img src="/resources/img/electronic.jpeg" class="img-fluid" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-text text-center">
+                                        <div class="category-name">
+                                            <em class="text-muted">Mobile Phone & Tablet</em>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>iPad Pro</h4>
+                                        </div>
+                                        <div class="product-price">$900
+                                            <del>$950</del></div>
+                                        <div class="seller-name">
+                                            <span>Sold By</span>
+                                            <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-picture text-center">
+                                        <a href="/shop/products/detail/">
+                                            <img src="/resources/img/electronic.jpeg" class="img-fluid" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-text text-center">
+                                        <div class="category-name">
+                                            <em class="text-muted">Mobile Phone & Tablet</em>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>iPad Pro</h4>
+                                        </div>
+                                        <div class="product-price">$900
+                                            <del>$950</del></div>
+                                        <div class="seller-name">
+                                            <span>Sold By</span>
+                                            <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-picture text-center">
+                                        <a href="/shop/products/detail/">
+                                            <img src="/resources/img/electronic.jpeg" class="img-fluid" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-text text-center">
+                                        <div class="category-name">
+                                            <em class="text-muted">Mobile Phone & Tablet</em>
+                                        </div>
+                                        <div class="product-name">
+                                            <h4>iPad Pro</h4>
+                                        </div>
+                                        <div class="product-price">$900
+                                            <del>$950</del></div>
+                                        <div class="seller-name">
+                                            <span>Sold By</span>
+                                            <a href="#" class="d-inline text-dark">Htet Hein</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+            <%- include('./partials/footer.ejs') %>
         </div>
     </div>
-</section>
-<% if(isLogin){ %>
-    <h1>Welcome Back, <%= name %></h1>
-<% } %>
-<section class="section-category mb-0 py-5" id="category">
-    <h2 class="text-center">Categories</h2>
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4">
-                <div class="category-box p-3 text-center">
-                    <img src="./resources/img/electronic.jpeg" alt="">
-                    <div class="inner-text mt-4">
-                        <h3>Eectronic</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, culpa.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section>
-    <h2 class="text-center">Popular Product</h2>
-</section>
-<%- include('./partials/footer.ejs') %>
+    <%- include('./partials/end.ejs') %>
+    
+       
+    
 
-<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
-<script src="/vendors/JS/bootstrap.min.js"></script>
-<script src="/vendors/JS/owl.carousel.min.js"></script>
-<script src="/resources/JS/main.js"></script>
-<script>
 
-   
-</script>
+
+

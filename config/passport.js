@@ -2,7 +2,7 @@ const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const pool=require('../util/database');
 const User=require('../models/user');
-const Verifier=require('email-verifier');
+const Cart = require('../models/cart');
 
 // let verifier=new Verifier()
 
@@ -17,9 +17,6 @@ passport.deserializeUser((user,done)=>{
         .catch(err=>{
             done(err,rows[0])
         });
-    
-    
-    
 });
 
 passport.use('local-signup',new LocalStrategy({
@@ -38,6 +35,8 @@ passport.use('local-signup',new LocalStrategy({
                 const rows= await newUser.save();
                 
                 if(rows[0].insertId){
+                    const cart = new Cart(rows[0].insertId);
+                    cart.save();
                     return done(null, newUser);
                 }
             }

@@ -22,6 +22,12 @@
     border: 1px solid #eee;
     box-shadow: rgba(0, 0, 0, 0.01) 0px 1px 1px,rgba(0, 0, 0, 0.08) 0 10px 30px;
 }
+.product-item {
+    margin-bottom: 25px;
+    border: 1px solid #eee;
+    box-shadow: rgba(0, 0, 0, 0.01) 0px 1px 1px,rgba(0, 0, 0, 0.08) 0 10px 30px;
+    background-color: #efe;
+}
 .product-item .product-picture {
 	overflow: hidden;
 }

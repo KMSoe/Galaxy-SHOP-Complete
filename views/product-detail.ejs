@@ -1,10 +1,7 @@
 <% layout('layout') %>
 
-<%- include('../partials/navbar.ejs') %>
-<div id="wrapper" class="d-flex">
-    <!-- Sidebar -->
-    <%- include('../partials/sidebar.ejs') %>
-    <!-- /#sidebar-wrapper -->
+<%- include('./partials/navbar.ejs') %>
+
     <!--Start Product Detail Secction -->
     <section class="product-details-section mx-auto">
         <div class="container">
@@ -17,30 +14,37 @@
                 <div class="col-md-6">
                     <div class="product-info">
                         <div class="pd-title">
-                            <h3>iPad Pro </h3>
+                            <h3><%= product.name %></h3>
                         </div>
                         <div class="pd-description">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet facilis, cum delectus
                                 eum minus repellat excepturi recusandae mollitia provident harum ipsam molestiae modi
                                 dolorum. Ab, voluptatibus. In distinctio soluta eaque.</p>
-                                <h4>$495.00 <del>629.99</del></h4>
+                                <h4>$<%= product.discount > 0 ?  product.price-product.discount:product.price %> <del><%= product.discount > 0 ? product.price: '' %></del></h4>
                         </div>
                         <div class="pd-seller">
-                            <i>Seller</i>: <em><a href="">Kaung Myat</a></em>
+                            <i>Seller</i>: <em><a href=""><%= product.fname %> <%= product.lname %></a></em>
                         </div>
                         <div class="pd-quantity">
-                            <div class="pro-qty">
+                            <span>Quantity : <b><%= product.quantity %></b></span>
+                        </div>
+                        <div class="pd-quantity">
+                            <!-- <div class="pro-qty">
                                 <span class="dec qtybtn">-</span>
                                 <input type="text" value="1">
                                 <span class="inc qtybtn">+</span>
                             </div>
                             <a href="#" class="btn btn-primary">Add To Cart</a> 
-                            <span class="choose-text">or</span>
-                            <a href="#" class="btn btn-primary">Checkout</a>
+                             <span class="choose-text">or</span> 
+                            <a href="#" class="btn btn-primary">Checkout</a> -->
+                            <form action="/users/cart" method="post">
+                                <button class="btn btn-primary" type="submit">Add to Cart</button>
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+                            </form>
                         </div>
                         <div class="pd-category">
                             <span>Category :</span>
-                            <h5 class="d-inline-block">Mobile Phones and Tablets</h5>
+                            <h5 class="d-inline-block"><%= categoryName %></h5>
                         </div>
                         
                     </div>
@@ -184,8 +188,8 @@
 
     </section>
     <!--End Product Detail Secction -->
-</div>
-<%- include('../partials/footer.ejs') %>
+
+<%- include('./partials/footer.ejs') %>
 
 <script src="/vendors/JS/jquery-3.3.1.min.js"></script>
 <script src="/vendors/JS/bootstrap.min.js"></script>

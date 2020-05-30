@@ -1,97 +1,112 @@
 <% layout('layout') %>
 
-<%- include('./partials/navbar.ejs') %>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <%- include('./partials/side.ejs') %>
 
-<!-- Register section Begin -->
-<section class="register-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="left-side">
-                    <div class="text-box">
-                        <h4>
-                            Start Shopping
-                        </h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem consequatur quae sequi placeat laborum pariatur?
-                        </p>
+    <!-- Page Content  -->
+    <div id="content">
+
+        <header>
+            <%- include('./partials/navbar.ejs') %>
+        </header>
+
+        <!-- Register section Begin -->
+        <section class="register-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="left-side">
+                            <div class="text-box">
+                                <h4>
+                                    Start Shopping
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem consequatur
+                                    quae sequi placeat laborum pariatur?
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="register-form">
-                    <!-- <img src="/resources/img/logo.png" alt="Logo" class="d-block mx-auto"> -->
-                    <h3 class="text-center my-3">Create account</h3>
-                    <!-- <% if(hasError){ %>
+                    <div class="col-md-7">
+                        <div class="register-form">
+                            <!-- <img src="/resources/img/logo.png" alt="Logo" class="d-block mx-auto"> -->
+                            <h3 class="text-center my-3">Create account</h3>
+                            <!-- <% if(hasError){ %>
                         <% for(let error of errors){ %>
                             <div class="alert alert-danger"><%= error.msg %></div>
                         <% } %>
                     <% } %> -->
-                    <form action="/sign-up" method="POST">
-                        <div class="input-group <%= errors.find(e => e.param === 'firstName') ? 'invalid':'' %>">
-                            <div class="input-gp <%= oldValues.firstName ? 'focus':'' %>">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <label for="firstName"> First Name</label>
-                                <input type="text" name="firstName" id="firstName" value="<%= oldValues.firstName %>" class="input d-block"
-                                    autocomplete="off">
-                            </div>
-                            <small  class="small form-text text-left">Required</small>
+                            <form action="/sign-up" method="POST">
+                                <div
+                                    class="input-group <%= errors.find(e => e.param === 'firstName') ? 'invalid':'' %>">
+                                    <div class="input-gp <%= oldValues.firstName ? 'focus':'' %>">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <label for="firstName"> First Name</label>
+                                        <input type="text" name="firstName" id="firstName"
+                                            value="<%= oldValues.firstName %>" class="input d-block" autocomplete="off">
+                                    </div>
+                                    <small class="small form-text text-left">Required</small>
+                                </div>
+                                <div class="input-group <%= errors.find(e => e.param === 'lastName') ? 'invalid':'' %>">
+                                    <div class="input-gp <%= oldValues.lastName ? 'focus':'' %>">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <label for="lastName"> Last Name</label>
+                                        <input type="text" name="lastName" id="lastName"
+                                            value="<%= oldValues.lastName %>" class="input d-block" autocomplete="off">
+                                    </div>
+                                    <small class="small form-text text-left">Required</small>
+                                </div>
+                                <div class="input-group <%= errors.find(e => e.param === 'email') ? 'invalid':'' %>">
+                                    <div class="input-gp <%= oldValues.email ? 'focus':'' %>">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <label for="email"> Email</label>
+                                        <input type="email" name="email" id="email" value="<%= oldValues.email %>"
+                                            class="input d-block">
+                                    </div>
+                                    <small class="small form-text text-left">Required</small>
+                                </div>
+                                <div class="input-group <%= errors.find(e => e.param === 'password') ? 'invalid':'' %>">
+                                    <div class="input-gp <%= oldValues.password ? 'focus':'' %>">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <label for="password">Password</label>
+                                        <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                                        <input type="password" name="password" id="password"
+                                            value="<%= oldValues.password %>" class="input d-block">
+                                    </div>
+                                    <small id="emailHelp" class="form-text text-left">minimum 8 characters</small>
+                                </div>
+                                <div
+                                    class="input-group <%= errors.find(e => e.param === 'confirmPassword') ? 'invalid':'' %>">
+                                    <div class="input-gp <%= oldValues.confirmPassword ? 'focus':'' %>">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                                        <input type="password" name="confirmPassword" id="confirmPassword"
+                                            value="<%= oldValues.confirmPassword %>" class="input d-block">
+                                    </div>
+                                    <small id="confirmText" class="form-text text-left"></small>
+                                </div>
+                                <input type="submit" value="Sign up" class="btn primary-btn login-btn mt-3 text-white">
+                                <div class="or-seperator"><i>or using with</i></div>
+                                <div class="text-center social-btn">
+                                    <a href="/auth/facebook" class="btn btn-facebook text-white"><i
+                                            class="fa fa-facebook"></i>&nbsp;
+                                        Facebook</a>
+                                    <a href="/auth/google" class="btn btn-google text-white"><i
+                                            class="fa fa-google"></i>&nbsp;
+                                        Google</a>
+                                </div>
+                            </form>
+                            <a href="/sign-in">Already has an account?</a>
                         </div>
-                        <div class="input-group <%= errors.find(e => e.param === 'lastName') ? 'invalid':'' %>">
-                            <div class="input-gp <%= oldValues.lastName ? 'focus':'' %>">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <label for="lastName"> Last Name</label>
-                                <input type="text" name="lastName" id="lastName" value="<%= oldValues.lastName %>" class="input d-block"
-                                    autocomplete="off">
-                            </div>
-                            <small  class="small form-text text-left">Required</small>
-                        </div>
-                        <div class="input-group <%= errors.find(e => e.param === 'email') ? 'invalid':'' %>">
-                            <div class="input-gp <%= oldValues.email ? 'focus':'' %>">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <label for="email"> Email</label>
-                                <input type="email" name="email" id="email" value="<%= oldValues.email %>" class="input d-block">
-                            </div>
-                            <small  class="small form-text text-left">Required</small>
-                        </div>
-                        <div class="input-group <%= errors.find(e => e.param === 'password') ? 'invalid':'' %>">
-                            <div class="input-gp <%= oldValues.password ? 'focus':'' %>">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                <label for="password">Password</label>
-                                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
-                                <input type="password" name="password" id="password" value="<%= oldValues.password %>" class="input d-block">
-                            </div>
-                            <small id="emailHelp" class="form-text text-left">minimum 8 characters</small>
-                        </div>
-                        <div class="input-group <%= errors.find(e => e.param === 'confirmPassword') ? 'invalid':'' %>">
-                            <div class="input-gp <%= oldValues.confirmPassword ? 'focus':'' %>">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                <label for="confirmPassword">Confirm Password</label>
-                                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
-                                <input type="password" name="confirmPassword" id="confirmPassword" value="<%= oldValues.confirmPassword %>" class="input d-block">
-                            </div>
-                            <small id="confirmText" class="form-text text-left">Password does't match</small>
-                        </div>
-                        <input type="submit" value="Sign up" class="btn primary-btn login-btn mt-3 text-white" >
-                        <div class="or-seperator"><i>or using with</i></div>
-                        <div class="text-center social-btn">
-                            <a href="/auth/facebook" class="btn btn-facebook text-white"><i class="fa fa-facebook"></i>&nbsp;
-                                Facebook</a>
-                            <a href="/auth/google" class="btn btn-google text-white"><i class="fa fa-google"></i>&nbsp;
-                                Google</a>
-                        </div>
-                    </form>
-                    <a href="/sign-in">Already has an account?</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- Register Form Section End -->
+
+        <%- include('./partials/footer.ejs') %>
     </div>
-</section>
-<!-- Register Form Section End -->
-
-<%- include('./partials/footer.ejs') %>
-
-<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
-<script src="/vendors/JS/bootstrap.min.js"></script>
-<script src="/vendors/JS/owl.carousel.min.js"></script>
-<script src="/resources/JS/main.js"></script>
+</div>
+<%- include('./partials/end.ejs') %>

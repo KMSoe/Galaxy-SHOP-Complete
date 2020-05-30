@@ -1,0 +1,51 @@
+<% layout('layout') %>
+
+<%- include('../partials/navbar.ejs') %>
+<div id="wrapper" class="d-flex">
+    <%- include('../partials/sidebar.ejs') %>
+    <section class="order-section mx-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Order List</h3>
+                    <% if(data.length){ %>
+                    <div class="order-list">
+                        <% for(let order of data){ %>
+                            <div class="order-item">
+                                <div class="order">
+                                    <h6>Order</h6>
+                                    <ul>
+                                        <% let totalBill=0; %>
+                                        <% for(let item of order){ %>
+                                            <li>
+                                                <a href="" style="margin-right: 50px;"><%= item.seller %></a>
+                                                <a href=""><%= item.product %></a><span class="quantity">x (<%= item.quantity %>)</span>
+                                                <span class="bill">$<%= item.total %></span>
+                                                <% totalBill += item.total %>
+                                            </li>
+                                          <% } %>
+                                      <li><span>Total</span><span class="bill">$<%= totalBill %></span></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div> 
+                    <% }else{ %>
+                        <h3>No order</h3>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section> 
+</div>
+<%- include('../partials/footer.ejs') %>
+
+<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
+<script src="/vendors/JS/bootstrap.min.js"></script>
+<script src="/vendors/JS/owl.carousel.min.js"></script>
+<script src="/resources/JS/main.js"></script>
+<script>
+
+   
+</script>

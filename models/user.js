@@ -23,6 +23,13 @@ module.exports=class {
         }
          
     }
+    static async getUserById(id){
+        try {
+            return await database.query(`select * from users where id=?`,[id]);
+        } catch (error) {
+            throw error;
+        }
+    }
     static async isSignFacebook(facebook){
         try {
             return await database.query(`select * from users where facebook=?`,[facebook]);

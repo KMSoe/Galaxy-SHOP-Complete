@@ -1,59 +1,67 @@
-<header>
+<nav class="">
+    <div class="brand">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <!-- <span>Toggle Sidebar</span> -->
+        </button>
+        <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+        </button> -->
+        <a href="/" class="brand-text">
+            <img src="" alt="">
+            Galaxy
+        </a>
+        <form action="" class="">
+            <input type="text" class="searchbox" autocomplete="off" placeholder="search">
+            <label for="search" class="search-icon"><i class="fa fa-search"></i></label>
+        </form>
+    </div>
 
-    <nav class="">
-        <div class="brand">
-            <button class="navbar-toggler-icon" id="menu-toggle"></button>
-            <a href="/" class="brand-text">
-                <img src="" alt="">
-                Galaxy
-            </a>
-            <form action="" class="">
-                <input type="text" class="searchbox" autocomplete="off" placeholder="search">
-                <label for="search" class="search-icon"><i class="fa fa-search"></i></label>
-            </form>
-        </div>
-
-        <div class="main-navbar">
-            <ul class="main-nav">
-                <li class="active">
-                    <a class="" href="/">Home</a>
-                </li>
+    <div class="main-navbar">
+        <ul class="main-nav">
+            <li class="<%= path==='/' ? 'active':'' %>">
+                <a class="" href="/">Home</a>
+            </li>
+            <li class="<%= path==='/shop/products' ? 'active':'' %>">
+                <a class="" href="/shop/products">SHOP</a>
+            </li>
+            <li class="<%= path==='/users/post-product' ? 'active':'' %>">
+                <a class="" href="/users/post-product">Sell Now</a>
+            </li>
+            
+            <li class="<%= path==='/sign-up' ? 'active':'' %>">
+                <a class="" href="/sign-up">Sign up</a>
+            </li>
+            <% if(!isLogin){ %>
+            <li class="<%= path==='/sign-in' ? 'active':'' %>">
+                <a class="" href="/sign-in">Sign in</a>
+            </li>
+            <% } %>
+            <% if(isLogin){ %>
                 <li class="">
-                    <a class="" href="/shop">SHOP</a>
-                </li>
-                <li class="">
-                    <a class="" href="/users/post-product">Sell Now</a>
-                </li>
-                
-                <li class="">
-                    <a class="" href="/sign-up">Sign up</a>
-                </li>
-                <% if(!isLogin){ %>
-                <li class="">
-                    <a class="" href="/sign-in">Sign in</a>
+                    <a class="" href="/signout">Sign out</a>
                 </li>
                 <% } %>
-                <% if(isLogin){ %>
-                    <li class="">
-                        <a class="" href="/signout">Sign out</a>
-                    </li>
-                    <% } %>
-                <!-- <li class="">
-                <a class="" href="#">Logout</a>
-            </li> -->
-            </ul>
+            <!-- <li class="">
+            <a class="" href="#">Logout</a>
+        </li> -->
+        </ul>
 
-            
-            <!-- <div class="profile">
-                <a href="" class="btn btn-outline-primary">Login</a>
-                <a href="" class="btn btn-primary">Register</a>
-            </div> -->
+        
+        <!-- <div class="profile">
+            <a href="" class="btn btn-outline-primary">Login</a>
+            <a href="" class="btn btn-primary">Register</a>
+        </div> -->
 
-        </div>
-        <div class="profile-part">
+    </div>
+    <ul class="profile-part">
+        <li class="<%= path==='/sign-in' ? 'active':'' %>">
+            <a class="" href="/signout">Sign out</a>
+        </li>
+        <li>
             <a href="/users/profile" class="profile">
-                <img src="/resources/img/ipad-pro-2018.jpg" alt="">
+                <img src="/resources/img/undraw_profile_pic_ic5t.svg" alt="">
             </a>
-        </div>
-    </nav>
-</header>
+        </li>
+    </ul>
+</nav>

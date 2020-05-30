@@ -1,0 +1,96 @@
+<% layout('layout') %>
+
+<%- include('../partials/navbar.ejs') %>
+<div id="wrapper" class="d-flex">
+    <%- include('../partials/sidebar.ejs') %>
+    <section class="shopping-cart mx-auto">
+        <div class="container">
+            <% if(cartItems.length){ %>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let cartItem of cartItems){ %>
+                                <tr>
+                                    <td class="p-picture"><a href=""><img  src="/resources/img/ipad-pro-2018.jpg" alt=""></a></td>
+                                    <td class="p-name"><h5><%= cartItem.name %></h5></td>
+                                    <td class="p-price">$<%= cartItem.price - cartItem.discount %></td>
+                                    <td class="p-quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <span class="dec qtybtn">-</span>
+                                                    <input type="text" value="1">
+                                                <span class="inc qtybtn">+</span>
+                                            </div>
+                                        </div>
+                                        <%= cartItem.quantity %>
+                                    </td>
+                                    <td class="total-price">$<%= (cartItem.price - cartItem.discount) * cartItem.quantity %></td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="cart-buttons">
+                                <a href="#" class="continue-shop">Continue shopping</a>
+                                <a href="#" class="clear-cart">Clear cart</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="checkout">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Quantity</td>
+                                            <td><%= totalQuantity %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Bill</td>
+                                            <td>$<%= totalBill %></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center">
+                                                <form action="/users/profile/check" method="GET">
+                                                    <input type="hidden" name="cartItems" value="<%= cartItems %>">
+                                                    <input type="hidden" name="totalQuantity" value="<%= totalQuantity %>">
+                                                    <input type="hidden" name="totalBill" value="<%= totalBill %>">
+                                                    <input type="submit" value="Checkout" class="btn btn-block btn-primary">
+                                                </form>
+                                                <!-- <a href="" type="button" class="btn btn-block btn-primary">Checkout</a> -->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }else{ %>
+                    <h3>Empty cart</h3>
+            <% } %>
+        </div>
+    </section> 
+</div>
+<%- include('../partials/footer.ejs') %>
+
+<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
+<script src="/vendors/JS/bootstrap.min.js"></script>
+<script src="/vendors/JS/owl.carousel.min.js"></script>
+<script src="/resources/JS/main.js"></script>
+<script>
+
+   
+</script>

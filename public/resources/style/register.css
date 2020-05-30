@@ -1,6 +1,9 @@
 .register-section{
     background-color: #eee;
-    padding: 10px 0;
+    /* padding: 10px 0; */
+}
+.register-section .row{
+    width: 100%;
 }
 .register-section .col-md-5,.col-md-7{
     margin:0;
@@ -33,7 +36,7 @@
 
 .register-section .register-form{
     background-color: #eee;
-    padding: 120px 100px;
+    padding: 50px 30px 20px;
 }
 .register-section .register-form form{
     

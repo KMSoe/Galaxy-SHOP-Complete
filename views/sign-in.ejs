@@ -1,64 +1,75 @@
 <% layout('layout') %>
-<%- include('./partials/navbar.ejs') %>
 
-<!-- Login Section Begin -->
-<section class="login-section">
-  <div class="container p-2">
-    <div class="row">
-      <div class="col-md-6 img text-left">
-        <img src="./resources/img/undraw_personalization_triu.svg" alt="" />
-      </div>
-      <div class="col-md-6 login-container">
-        <div class="text-center">
-          <!-- <img src="./resources/img/undraw_profile_pic_ic5t.svg" alt="" /> -->
-          <h3 class="my-4">Welcome Back</h3>
-          <% if(hasError){ %>
-          <% for(let error of errors){ %>
-          <div class="alert alert-danger"><%= error.msg %></div>
-          <% } %>
-          <% } %>
-          <form action="/sign-in" method="POST">
-            <div class="input-group">
-              <div class="input-gp">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <label for="email"> Email</label>
-                <input type="email" name="email" id="email" class="input d-block" autocomplete="off" />
-              </div>
-            </div>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <%- include('./partials/side.ejs') %>
 
-            <div class="input-group">
-              <div class="input-gp">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-                <label for="password">Password</label>
-                <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
-                <input type="password" name="password" id="password" class="input" />
-              </div>
-              <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small>
+  <!-- Page Content  -->
+  <div id="content">
+
+    <header>
+      <%- include('./partials/navbar.ejs') %>
+    </header>
+
+
+    <!-- Login Section Begin -->
+    <section class="login-section">
+      <div class="container p-2">
+        <div class="row">
+          <div class="col-md-6 img text-left">
+            <img src="./resources/img/undraw_personalization_triu.svg" alt="" />
+          </div>
+          <div class="col-md-6 login-container">
+            <div class="text-center">
+              <!-- <img src="./resources/img/undraw_profile_pic_ic5t.svg" alt="" /> -->
+              <h3 class="my-4">Welcome Back</h3>
+              <% if(hasError){ %>
+              <% for(let error of errors){ %>
+              <div class="alert alert-danger"><%= error.msg %></div>
+              <% } %>
+              <% } %>
+              <form action="/sign-in" method="POST">
+                <div class="input-group">
+                  <div class="input-gp">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <label for="email"> Email</label>
+                    <input type="email" name="email" id="email" class="input d-block" autocomplete="off" />
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-gp">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <label for="password">Password</label>
+                    <i class="fa fa-eye toggleBtn" aria-hidden="true"></i>
+                    <input type="password" name="password" id="password" class="input" />
+                  </div>
+                  <small id="emailHelp" class="form-text text-muted text-left">minimum 8 characters</small>
+                </div>
+                <div style="float: left;">
+                  <input type="checkbox" id="rememberme" name="rememberme" value="yes" class="">
+                  <label for="rememberme" class="rememberme">Remember me</label>
+                </div>
+                <a href="/forgot-form" class="text-right">Forgot Password?</a>
+                <input type="submit" value="Login" class="btn primary-btn login-btn mt-3 text-white" />
+                <div class="or-seperator"><i>or Login with</i></div>
+                <div class="text-center social-btn">
+                  <a href="/auth/facebook/signin" class="btn btn-facebook text-white"><i
+                      class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                  <a href="#" class="btn btn-google text-white"><i class="fa fa-google"></i>&nbsp; Google</a>
+                </div>
+              </form>
+              <p>New to Galaxy? Sign up <a href="/sign-up">here</a></p>
             </div>
-            <input type="checkbox" id="rememberme" name="rememberme" value="yes"> 
-            <label for="rememberme">Remember me</label>
-            <a href="/forgot-form" class="text-right">Forgot Password?</a>
-            <input type="submit" value="Login" class="btn primary-btn login-btn mt-3 text-white" />
-            <div class="or-seperator"><i>or Login with</i></div>
-            <div class="text-center social-btn">
-              <a href="/auth/facebook/signin" class="btn btn-facebook text-white"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-              <a href="#" class="btn btn-google text-white"><i class="fa fa-google"></i>&nbsp; Google</a>
-            </div>
-          </form>
-          <p>New to Galaxy? Sign up <a href="/sign-up">here</a></p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- Login Form Section End -->
+
+
+
+    <%- include('./partials/footer.ejs') %>
   </div>
-</section>
-<!-- Login Form Section End -->
-
-<%- include('./partials/footer.ejs') %>
-
-<script src="/vendors/JS/jquery-3.3.1.min.js"></script>
-<script src="/vendors/JS/bootstrap.min.js"></script>
-<script src="/vendors/JS/owl.carousel.min.js"></script>
-<script src="/resources/JS/main.js"></script>
-<script>
-
-</script>
+</div>
+<%- include('./partials/end.ejs') %>

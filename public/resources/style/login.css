@@ -27,6 +27,12 @@
 .input-group.invalid small{
 	color: #ff0009;
 }
+.input-group small{
+	color: #333;
+}
+.input-group small.misspassword{
+	color: #ff0009;
+}
 .input-gp.focus::before,.input-gp.focus::after{
 	content: '';
 	position: absolute;
@@ -70,7 +76,7 @@
 	-ms-transition: .3s;
 	-o-transition: .3s;
 }
-.input-gp i.toggleBtn{
+.input-gp i.fa-eye,.input-gp i.fa-eye-slash{
     position: absolute;
 	right:10px;
 	top: 50%;
@@ -88,14 +94,16 @@
 }
 a{
 	text-decoration: none;
-	color: #999;
+	/* color: #999; */
 	transition: .3s;
 	-webkit-transition: .3s;
 	-moz-transition: .3s;
 	-ms-transition: .3s;
 	-o-transition: .3s;
 }
-
+.rememberme{
+	cursor: pointer;
+}
 .login-btn{
 	display: block;
 	width: 70%;

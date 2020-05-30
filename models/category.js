@@ -1,3 +1,5 @@
+const database=require('../util/database');
+
 module.exports = class {
     constructor(name,remark){
         this.name = name;
@@ -17,6 +19,13 @@ module.exports = class {
             throw error;
         }
     }
+    static async  getCategoryById(id){
+        try {
+            return await database.query(`select * from categories where id=?`,[id]);
+        } catch (error) {
+            throw error;
+        }
+    }
     async updateCategory(id){
         try {
             return await database.execute(`update categories set name=?,remark=? where id=?`,[this.name,this.remark,id]);
@@ -26,7 +35,7 @@ module.exports = class {
     }
     static async deleteCategory(id){
         try {
-            return await database.query(`delete from categories where id = ? `,[id]);
+            return await database.execute(`delete from categories where id = ? `,[id]);
         } catch (error) {
             throw error;
         }
