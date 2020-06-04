@@ -17,7 +17,7 @@ module.exports=class {
     }
     async save(){
         try {
-            return await database.execute('insert into products(name,price,discount,quantity,description,image,catId,userId,createdDate,modifiedDate) values(?,?,?,?,?,?,?,?,?)',[this.name,this.price,this.discount,this.quantity,this.description,this.categoryId,this.userId,this.creadedDate,this.modifiedDate]);
+            return await database.execute('insert into products(name,price,discount,quantity,description,image,catId,userId,createdDate,modifiedDate) values(?,?,?,?,?,?,?,?,?,?)',[this.name,this.price,this.discount,this.quantity,this.description,this.image,this.categoryId,this.userId,this.creadedDate,this.modifiedDate]);
         } catch (error) {
             throw error;
         }
@@ -46,7 +46,7 @@ module.exports=class {
     
     async updateProduct(id){
         try {
-            return await database.execute(`update products set name=?,price=?,discount=?,quantity=?,description=?,image=?,categoryId=?, modifiedDate=? where id=?`,[this.name,this.price,this.discount,this.quantity,this.description,this.image,this.categoryId,this.modifiedDate,id]);
+            return await database.execute(`update products set name=?,price=?,discount=?,quantity=?,description=?,image=?,catId=?, modifiedDate=? where id=?`,[this.name,this.price,this.discount,this.quantity,this.description,this.image,this.categoryId,this.modifiedDate,id]);
         } catch (error) {
             throw error;
         }

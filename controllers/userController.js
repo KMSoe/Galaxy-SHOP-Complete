@@ -35,7 +35,7 @@ exports.postProduct = async (req,res)=>{
   const userId = req.session.user.id;
   const createdDate = new Date();
   const modifiedDate = new Date();
-  console.log(image);
+  
   // const product = new Product(pname,Number(price),Number(discount),description,userId,new Date(),new Date());
   const product = new Product();
   product.name =pname;
@@ -43,13 +43,14 @@ exports.postProduct = async (req,res)=>{
   product.discount = discount;
   product.quantity = quantity;
   product.description = description;
+  product.image = image.path;
   product.categoryId = catId;
   product.userId = userId;
   product.creadedDate = createdDate;
   product.modifiedDate = modifiedDate;
   console.log(product);
   try {
-    // const results = await product.save();
+    const results = await product.save();
     if(results[0]){
       return res.redirect('/');
     }
@@ -78,8 +79,8 @@ exports.getProfileProducts = async (req,res)=>{
 exports.getEditProduct = async  (req,res)=>{
   try {
     const [results,fields] = await Product.getProductById(req.params.productId);
-    // if(results[0])
-    console.log(results);
+    const [categories, categoryInfo] = await Category.getCategories();
+    
     const errors=req.flash('errors');
     return res.render('users/edit-product',{
       path:'/profile',
@@ -87,6 +88,7 @@ exports.getEditProduct = async  (req,res)=>{
       errors:errors,
       hasError:errors.length,
       product: results[0],
+      categories,
   });
   } catch (error) {
     throw error;
@@ -95,20 +97,30 @@ exports.getEditProduct = async  (req,res)=>{
 }
 exports.editProduct = async (req,res)=>{
   const pId = req.params.productId;
+  const image = req.file;
   try {
     const product = new Product();
     product.name = req.body.pname;
     product.price =req.body.price;
     product.discount = req.body.discount;
     product.quantity = req.body.quantity;
+    product.categoryId = req.body.catId;
+    // product.image = req.file.path;
     product.description = req.body.description;
     product.categoryId = req.body.catId;
     product.modifiedDate = new Date();
+
+    if(image){
+      product.image = image.path;
+    }else{
+      const  [pd, info] = await Product.getProductById(pId);
+      product.image = pd[0].image;
+    }
+    console.log(product.image);
     const results = await product.updateProduct(pId);
     if(results[0]){
       return res.redirect('/users/profile');
     }
-    res.redirect('/');
   } catch (error) {
     throw error;
   }
