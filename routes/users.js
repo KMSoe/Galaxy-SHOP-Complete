@@ -1,7 +1,10 @@
 const express = require('express');
 const userController = require('../controllers/userController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
+
+router.use(authController.isLogin);
 
 /* GET users listing. */
 router.get('/post-product',userController.getPostProductForm);

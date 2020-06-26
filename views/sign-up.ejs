@@ -32,23 +32,23 @@
                         <div class="register-form">
                             <!-- <img src="/resources/img/logo.png" alt="Logo" class="d-block mx-auto"> -->
                             <h3 class="text-center my-3">Create account</h3>
-                            <!-- <% if(hasError){ %>
-                        <% for(let error of errors){ %>
-                            <div class="alert alert-danger"><%= error.msg %></div>
-                        <% } %>
-                    <% } %> -->
+                            <% if(hasError){ %>
+                            <% for(let error of errors){ %>
+                            <div class="alert alert-danger text-center"><%= error.msg %></div>
+                            <% } %>
+                            <% } %>
                             <form action="/sign-up" method="POST">
                                 <div
                                     class="input-group <%= errors.find(e => e.param === 'firstName') ? 'invalid':'' %>">
                                     <div class="input-gp <%= oldValues.firstName ? 'focus':'' %>">
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <label for="firstName"> First Name</label>
-                                        <input type="text" name="firstName" id="firstName"
-                                            value="<%= oldValues.firstName %>" class="input d-block" autocomplete="off">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" id="name" value="<%= oldValues.name %>"
+                                            class="input d-block" autocomplete="off">
                                     </div>
                                     <small class="small form-text text-left">Required</small>
                                 </div>
-                                <div class="input-group <%= errors.find(e => e.param === 'lastName') ? 'invalid':'' %>">
+                                <!-- <div class="input-group <%= errors.find(e => e.param === 'lastName') ? 'invalid':'' %>">
                                     <div class="input-gp <%= oldValues.lastName ? 'focus':'' %>">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <label for="lastName"> Last Name</label>
@@ -56,7 +56,7 @@
                                             value="<%= oldValues.lastName %>" class="input d-block" autocomplete="off">
                                     </div>
                                     <small class="small form-text text-left">Required</small>
-                                </div>
+                                </div> -->
                                 <div class="input-group <%= errors.find(e => e.param === 'email') ? 'invalid':'' %>">
                                     <div class="input-gp <%= oldValues.email ? 'focus':'' %>">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -109,4 +109,3 @@
         <%- include('./partials/footer.ejs') %>
     </div>
 </div>
-<%- include('./partials/end.ejs') %>

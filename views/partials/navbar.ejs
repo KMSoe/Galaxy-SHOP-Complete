@@ -28,34 +28,21 @@
             <li class="<%= path==='/users/post-product' ? 'active':'' %>">
                 <a class="" href="/users/post-product">Sell Now</a>
             </li>
-            
-            <li class="<%= path==='/sign-up' ? 'active':'' %>">
-                <a class="" href="/sign-up">Sign up</a>
-            </li>
-            <% if(!isLogin){ %>
-            <li class="<%= path==='/sign-in' ? 'active':'' %>">
-                <a class="" href="/sign-in">Sign in</a>
-            </li>
-            <% } %>
-            <% if(isLogin){ %>
-                <li class="">
-                    <a class="" href="/signout">Sign out</a>
-                </li>
-                <% } %>
             <!-- <li class="">
             <a class="" href="#">Logout</a>
         </li> -->
         </ul>
 
-        
+
         <!-- <div class="profile">
             <a href="" class="btn btn-outline-primary">Login</a>
             <a href="" class="btn btn-primary">Register</a>
         </div> -->
 
     </div>
-    <ul class="profile-part">
-        <li class="<%= path==='/sign-in' ? 'active':'' %>">
+    <ul class="profile-part">        
+        <% if(isLogin){ %>
+        <li class="">
             <a class="" href="/signout">Sign out</a>
         </li>
         <li>
@@ -63,5 +50,14 @@
                 <img src="/resources/img/undraw_profile_pic_ic5t.svg" alt="">
             </a>
         </li>
+        <% }else{ %>
+            <li class="<%= path==='/sign-in' ? 'active':'' %>">
+                <a type="button" class="btn" href="/sign-in">Sign in</a>
+            </li>
+            <li class="<%= path==='/sign-in' ? 'active':'' %>">
+                <a type="button" class="btn btn-outline-primary" href="/sign-up">Sign up</a>
+            </li>
+        <% } %>
+        
     </ul>
 </nav>

@@ -4,9 +4,8 @@ const bcrypt=require('bcryptjs');
 
 
 module.exports=class {
-    constructor(firstName,lastName,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken,google){
-        this.firstName=firstName;
-        this.lastName=lastName;
+    constructor(name,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken,google,createdDate){
+        this.name=name;
         this.email=email;
         this.password=password;
         this.passwordResetToken=passwordResetToken;
@@ -14,10 +13,11 @@ module.exports=class {
         this.facebook = facebook;
         this.fbtoken = fbtoken;
         this.google = google;
+        this.createdDate = createdDate;
     }
     async save(){
         try {
-            return await database.execute('insert into users(fname,lname,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken) values(?,?,?,?,?,?,?,?)',[this.firstName,this.lastName,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,this.facebook,this.fbtoken]);
+            return await database.execute('insert into users(name,email,password,createdDate) values(?,?,?,?)',[this.name,this.email,this.password,this.createdDate]);
         } catch (error) {
             throw error;
         }
@@ -61,7 +61,7 @@ module.exports=class {
     async updateUser(email){
         try {
             console.log('Update');
-            return await database.execute(`update users set fname=?,lname=?,email=?,password=?,passwordResetToken=?,passwordResetExpires=? where email=?`,[this.firstName,this.lastName,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,email]);
+            return await database.execute(`update users set name=?,email=?,password=?,passwordResetToken=?,passwordResetExpires=? where email=?`,[this.name,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,email]);
         } catch (error) {
             throw error;
         }

@@ -27,11 +27,15 @@ passport.use('local-signup',new LocalStrategy({
     try {
         
             const [rows,fields]=await pool.query(`select * from users where email=?`,[email]); 
-            if(rows[0]){
+            if(rows.length > 0){
                 return done(null,false,req.flash('errors',{msg: 'Email is already exists.' }));
             }else{
                 const pwd=await User.hashPassword(password);
-                const newUser=new User(req.body.firstName,req.body.lastName,email,pwd,'',new Date(),'','');
+                const newUser=new User();
+                newUser.name = req.body.name;
+                newUser.email = email;
+                newUser.password = pwd;
+                newUser.createdDate = new Date();
                 const rows= await newUser.save();
                 
                 if(rows[0].insertId){

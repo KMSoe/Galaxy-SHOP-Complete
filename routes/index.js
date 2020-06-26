@@ -68,8 +68,7 @@ router.get('/sign-up',indexController.getSignup);
 
 /* Sign up. */
 router.post('/sign-up', signupValidate([
-  body('firstName').notEmpty().trim().withMessage('First Name must be subbmit'),
-  body('lastName').notEmpty().trim().withMessage('Last Name must be subbmit'),
+  body('name').notEmpty().trim().withMessage('Name must be subbmit'),
   body('email').isEmail().normalizeEmail().withMessage('Invalid Email'),
   body('password').trim().isLength({ min: 8 }).withMessage('Invalid Password'),
   body('confirmPassword').custom((value,{req})=>{

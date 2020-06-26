@@ -60,14 +60,14 @@ module.exports=class {
     }
     static async getProductAndSeller(){
         try {
-            return await database.query(`select products.*, users.fname,users.lname from products left join users on products.userId = users.id`);
+            return await database.query(`select products.*, users.name from products left join users on products.userId = users.id`);
         } catch (error) {
             throw error;
         }
     }
     static async getProductAndSellerById(id){
         try {
-            return await database.query(`select products.*, users.fname,users.lname from products left join users on products.userId = users.id where products.id= ?`,[id]);
+            return await database.query(`select products.*, users.name from products left join users on products.userId = users.id where products.id= ?`,[id]);
         } catch (error) {
             throw error;
         }
