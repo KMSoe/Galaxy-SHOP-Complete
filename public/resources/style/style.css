@@ -52,6 +52,19 @@ textarea:focus {
 	background: #e7ab3c;
 	text-transform: uppercase;
 }
+.btn-outline-primary{
+	color: #333;
+	transition: border ease-in-out .3s;
+	border: 1px solid #e7ab3c;
+	-webkit-transition: border ease-in-out .3s;
+	-moz-transition: border ease-in-out .3s;
+	-ms-transition: border ease-in-out .3s;
+	-o-transition: border ease-in-out .3s;
+}
+.btn-outline-primary:hover{
+	border: 1px solid #e7ab3c;
+	background: #e7ab3c;	
+}
 a{
 	/* display: inline-block; */
     text-decoration: none;

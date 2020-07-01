@@ -16,14 +16,11 @@
                         <div class="pd-title">
                             <h3><%= product.name %></h3>
                         </div>
-                        <div class="pd-description">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet facilis, cum delectus
-                                eum minus repellat excepturi recusandae mollitia provident harum ipsam molestiae modi
-                                dolorum. Ab, voluptatibus. In distinctio soluta eaque.</p>
-                                <h4>$<%= product.discount > 0 ?  product.price-product.discount:product.price %> <del><%= product.discount > 0 ? product.price: '' %></del></h4>
+                        <div class="pd-description pd-price">
+                            <h4>$<%= product.discount > 0 ?  product.price-product.discount:product.price %> <del><%= product.discount > 0 ? product.price: '' %></del></h4>
                         </div>
                         <div class="pd-seller">
-                            <i>Seller</i>: <em><a href=""><%= product.fname %> <%= product.lname %></a></em>
+                            <i>Seller</i>: <em><a href=""><%= product.username %></a></em>
                         </div>
                         <div class="pd-quantity">
                             <span>Quantity : <b><%= product.quantity %></b></span>
@@ -40,6 +37,7 @@
                             <form action="/users/cart" method="post">
                                 <button class="btn btn-primary" type="submit">Add to Cart</button>
                                 <input type="hidden" name="productId" value="<%= product.id %>">
+                                <input type="hidden" name="productQty" value="<%= product.quantity %>">
                             </form>
                         </div>
                         <div class="pd-category">
@@ -53,6 +51,13 @@
         </div>
         <div class="container">
             <div class="row">
+                <div class="col-md-12 pd-description">
+                    <h4>Description</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet facilis, cum delectus
+                        eum minus repellat excepturi recusandae mollitia provident harum ipsam molestiae modi
+                        dolorum. Ab, voluptatibus. In distinctio soluta eaque.</p>
+                        
+                </div>
                 <h4 class="col-md-12 text-center mt-5">Rating and Reviews</h4>
                 <div class="col-md-6">
                     <div class="pd-rating">

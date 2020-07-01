@@ -33,15 +33,11 @@
                         <li class="nav-item">
                           <a class="nav-link active text-dark" href="#">All Categories</a>
                         </li>
+                        <% for(let category of categories){ %>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Mobile Phones and Tablets</a>
+                          <a class="nav-link" href="/shop/products?categoryId=<%= category.id %>&categoryName=<%= category.name %>"><%= category.name %></a>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Mobile Phones and Tablets</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Mobile Phones and Tablets</a>
-                        </li>
+                        <% } %>
                       </ul>
                     </div>
                   </div>
@@ -67,7 +63,7 @@
                               <div class="product-price">$<%= product.price - product.discount %> <del>$<%= product.price %></del></div>
                               <div class="seller-name">
                                 <span>Sold By</span>
-                                <a href="#" class="d-inline text-dark"><%= product.fname %> <%= product.lname %></a>
+                                <a href="#" class="d-inline text-dark"><%= product.username %></a>
                               </div>
                               <!-- <div class="add-to-cart">
                                     <form action="">
