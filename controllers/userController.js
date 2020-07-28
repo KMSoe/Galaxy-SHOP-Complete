@@ -69,11 +69,39 @@ exports.getProfileProducts = async (req, res) => {
         path: "/profile",
         isLogin: req.session.isLogin,
         products: rows,
+        user: req.session.user
       });
     }
+  } catch (error) {
+    throw error;
+  }
+};
+exports.getMyInfo = async (req, res) => {
+  return res.render("users/my-info", {
+    path: "/profile",
+    isLogin: req.session.isLogin,
+    user: req.session.user,
+  });
+};
+exports.updateMe = async (req, res) => {
+  try {
+    const [users, fields] = await User.getUserById(req.session.user.id);
+
+    if (users.length > 0) {
+      const updatedUser = users[0];
+      updatedUser.name = req.body.name;
+      console.log(updatedUser);
+      // const u = new User(updatedUser);
+      // console.log(u);
+      // req.session.user = updatedUser;
+    }
+    return res.render("users/my-info", {
+      path: "/profile",
+      isLogin: req.session.isLogin,
+      user: req.session.user,
+    });
   } catch (error) {}
 };
-
 exports.getEditProduct = async (req, res) => {
   try {
     const [results, fields] = await Product.getProductById(
@@ -139,12 +167,19 @@ exports.deleteProduct = async (req, res) => {
 exports.getUserProductDetail = async (req, res) => {
   const pId = req.params.productId;
   try {
-    const [rows, feilds] = await Product.getProductById(pId);
-    if (rows[0]) {
-      console.log(rows[0]);
-      res.render("users/product-detail", {
-        isLogin: req.session.isLogin,
-      });
+    const [rows, fields] = await Product.getProductAndSellerById(pId);
+    if (rows.length > 0) {
+      const [results, fields] = await Category.getCategoryById(rows[0].catId);
+      console.log(pId,rows[0]);
+      if (results.length > 0) {
+        return res.render("users/product-detail", {
+          path: "/profile",
+          isLogin: req.session.isLogin,
+          product: rows[0],
+          user: req.session.user,
+          categoryName: results[0].name,
+        });
+      }
     }
   } catch (error) {
     throw error;
@@ -163,13 +198,14 @@ exports.getCart = async (req, res) => {
           (a.price - a.discount) * a.quantity +
             (n.price - n.discount) * n.quantity,
         ]);
-      }else if(rows.length === 0){
+      } else if (rows.length === 0) {
         return res.render("users/cart", {
           path: "/profile",
           isLogin: req.session.isLogin,
           cartItems: rows,
           totalQuantity: 0,
           totalBill: 0,
+          user: req.session.user
         });
       } else {
         [totalQuantity, totalBill] = [
@@ -184,6 +220,7 @@ exports.getCart = async (req, res) => {
         cartItems: rows,
         totalQuantity,
         totalBill,
+        user: req.session.user
       });
     }
   } catch (error) {
@@ -226,7 +263,18 @@ exports.postCart = async (req, res) => {
     throw error;
   }
 };
-
+exports.clearCart = async (req, res) => {
+  const userId = req.session.user.id;
+  try {
+    const [cartId, fields] = await Cart.getCartByUserId(userId);
+    const [result, info] = await CartItem.clearCart(cartId[0].id);
+    if(result.affectedRows > 0 ){
+      return res.redirect(`/users/cart`);
+    }
+  } catch (error) {
+    throw error;
+  }
+}
 exports.getCheckout = async (req, res) => {
   const userId = req.session.user.id;
   try {
@@ -256,6 +304,7 @@ exports.getCheckout = async (req, res) => {
         cartItems,
         totalQuantity,
         totalBill,
+        user: req.session.user
       });
     }
   } catch (error) {

@@ -4,7 +4,7 @@ const bcrypt=require('bcryptjs');
 
 
 module.exports=class {
-    constructor(name,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken,google,createdDate){
+    constructor(name,email,password,passwordResetToken,passwordResetExpires,facebook,fbtoken,google, nrcNO, nrcFront, nrcBack, createdDate){
         this.name=name;
         this.email=email;
         this.password=password;
@@ -13,6 +13,9 @@ module.exports=class {
         this.facebook = facebook;
         this.fbtoken = fbtoken;
         this.google = google;
+        this.nrcNO = nrcNO;
+        this.nrcFront = nrcFront;
+        this.nrcBack = nrcBack;
         this.createdDate = createdDate;
     }
     async save(){
@@ -60,8 +63,14 @@ module.exports=class {
     }
     async updateUser(email){
         try {
-            console.log('Update');
             return await database.execute(`update users set name=?,email=?,password=?,passwordResetToken=?,passwordResetExpires=? where email=?`,[this.name,this.email,this.password,this.passwordResetToken,this.passwordResetExpires,email]);
+        } catch (error) {
+            throw error;
+        }
+    }
+    async updateUserInfo(id){
+        try {
+            return await database.execute(`update users set name=? where id=?`,[this.name, id]);
         } catch (error) {
             throw error;
         }

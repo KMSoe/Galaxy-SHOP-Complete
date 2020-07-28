@@ -1,0 +1,36 @@
+<% layout('layout') %>
+
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <%- include('../partials/side.ejs') %>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <header>
+            <%- include('../partials/navbar.ejs') %>
+        </header>
+        <section class="info-section profile-section mx-auto">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <%- include('../partials/sidebar.ejs') %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="info">
+                            <form action="/users/updateMe" method="POST">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="<%= user.name %>">
+                                </div>
+                                <input type="submit" value="Update" class="btn primary-btn">
+                            </form>
+                        </div>
+                    </div>
+        </section>
+
+        <%- include('../partials/footer.ejs') %>
+    </div>
+</div>

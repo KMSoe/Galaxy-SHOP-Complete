@@ -41,4 +41,11 @@ module.exports = class {
             
         }
     }
+    static async clearCart(cartItemId){
+        try {
+            return await database.execute(`delete from cart_items where cartId=?`,[cartItemId]);
+        } catch (error) {
+            
+        }
+    }
 }

@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Category = require("../models/category");
+const Review = require("../models/reviewModel");
 
 exports.getIndex = function (req, res) {
   let name;
@@ -48,15 +49,23 @@ exports.getProductDetail = async (req, res) => {
   const pId = req.params.productId;
   try {
     const [rows, fields] = await Product.getProductAndSellerById(pId);
-    if (rows[0]) {
+    if (rows.length > 0) {
       const [results, fields] = await Category.getCategoryById(rows[0].catId);
-
-      if (results[0]) {
+      const [reviews, reviewInfo] = await Review.getReviewsByProductId(rows[0].id);
+      // let isReview;
+      for (const review of reviews) {
+        if(review.userId === req.session.user.id){
+          review.isReview = true;
+        }
+      }
+      if (results.length > 0) {
         return res.render("product-detail", {
           path: "/shop/products",
           isLogin: req.session.isLogin,
           product: rows[0],
           categoryName: results[0].name,
+          reviews,
+          // isReview,
         });
       }
     }

@@ -71,6 +71,13 @@ module.exports=class {
             throw error;
         }
     }
+    static async searchProducts(searchItem){
+        try {
+            return await database.query(`select products.*, users.name as username from products left join users on products.userId = users.id where products.name like '%${searchItem}%'`);
+        } catch (error) {
+            throw error;
+        }
+    }
     static async getProductAndSellerByCatId(catId){
         try {
             return await database.query(`select products.*, users.name as username from products left join users on products.userId = users.id where products.catId=?`, [catId]);

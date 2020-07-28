@@ -1,10 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 const indexController = require("../controllers/indexController");
+const authController = require("../controllers/authController");
+const reviewController = require("../controllers/reviewController");
 const { body, validationResult } = require("express-validator");
 const crypto = require("crypto");
 const User = require("../models/user");
 const sendEmail = require("../util/email");
+const reviewRoutes = require("./reviewRoutes");
 
 const router = express.Router();
 
@@ -65,6 +68,12 @@ router.get("/shop/products", indexController.getShop);
 router.get(
   "/shop/products/detail/:productId",
   indexController.getProductDetail
+);
+router.use("/shop/products/detail/:productId/review", reviewRoutes);
+router.post(
+  "/shop/products/detail/:productId/review",
+  authController.isLogin,
+  reviewController.postReview
 );
 /* GET Sign up page. */
 router.get("/sign-up", indexController.getSignup);

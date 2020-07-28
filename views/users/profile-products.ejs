@@ -42,12 +42,14 @@
                                             </div>
 
                                             <div class="add-to-cart">
-                                                <a href="/users/products/<%= product.id %>/edit">Edit</a>
+                                                <a href="/users/products/<%= product.id %>/edit" class="btn btn-success text-white"><i
+                                                        class="fa fa-edit"></i></a>
                                                 <form action="/users/products/<%= product.id %>/delete" method="POST"
                                                     class="d-inline-block">
                                                     <input type="hidden" />
-                                                    <input type="submit" value="Delete"
-                                                        class="btn btn-danger text-white" />
+
+                                                    <button type="submit" class="btn btn-danger text-white"><i
+                                                            class="fa fa-trash"></i></button>
                                                 </form>
                                             </div>
                                         </div>

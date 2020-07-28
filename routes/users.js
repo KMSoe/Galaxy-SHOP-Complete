@@ -34,6 +34,11 @@ router.post("/post-product",validateProduct([
 ]), userController.postProduct);
 
 router.get("/profile", userController.getProfileProducts);
+router.get("/profile/clear-cart", userController.clearCart);
+router.get("/me", userController.getMyInfo);
+router.post("/updateMe", userController.updateMe);
+
+
 router.get("/products/:productId", userController.getUserProductDetail);
 router.get("/products/:productId/edit", userController.getEditProduct);
 router.post("/product/:productId/edit", userController.editProduct);

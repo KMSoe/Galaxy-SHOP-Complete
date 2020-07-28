@@ -1,32 +1,43 @@
 <% layout('layout') %>
 
-<%- include('./partials/navbar.ejs') %>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <%- include('./partials/side.ejs') %>
 
-    <!--Start Product Detail Secction -->
-    <section class="product-details-section mx-auto">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="product-img">
-                        <img src="/<%= product.image %>" class="img-fluid" alt="iPad Pro">
-                    </div>
+  <!-- Page Content  -->
+  <div id="content">
+
+    <header>
+      <%- include('./partials/navbar.ejs') %>
+    </header>
+    
+
+<!--Start Product Detail Secction -->
+<section class="product-details-section mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-img">
+                    <img src="/<%= product.image %>" class="img-fluid" alt="iPad Pro">
                 </div>
-                <div class="col-md-6">
-                    <div class="product-info">
-                        <div class="pd-title">
-                            <h3><%= product.name %></h3>
-                        </div>
-                        <div class="pd-description pd-price">
-                            <h4>$<%= product.discount > 0 ?  product.price-product.discount:product.price %> <del><%= product.discount > 0 ? product.price: '' %></del></h4>
-                        </div>
-                        <div class="pd-seller">
-                            <i>Seller</i>: <em><a href=""><%= product.username %></a></em>
-                        </div>
-                        <div class="pd-quantity">
-                            <span>Quantity : <b><%= product.quantity %></b></span>
-                        </div>
-                        <div class="pd-quantity">
-                            <!-- <div class="pro-qty">
+            </div>
+            <div class="col-md-6">
+                <div class="product-info">
+                    <div class="pd-title">
+                        <h3><%= product.name %></h3>
+                    </div>
+                    <div class="pd-description pd-price">
+                        <h4>$<%= product.discount > 0 ?  product.price-product.discount:product.price %>
+                            <del><%= product.discount > 0 ? product.price: '' %></del></h4>
+                    </div>
+                    <div class="pd-seller">
+                        <i>Seller</i>: <em><a href=""><%= product.username %></a></em>
+                    </div>
+                    <div class="pd-quantity">
+                        <span>Quantity : <b><%= product.quantity %></b></span>
+                    </div>
+                    <div class="pd-quantity">
+                        <!-- <div class="pro-qty">
                                 <span class="dec qtybtn">-</span>
                                 <input type="text" value="1">
                                 <span class="inc qtybtn">+</span>
@@ -34,101 +45,102 @@
                             <a href="#" class="btn btn-primary">Add To Cart</a> 
                              <span class="choose-text">or</span> 
                             <a href="#" class="btn btn-primary">Checkout</a> -->
-                            <form action="/users/cart" method="post">
-                                <button class="btn btn-primary" type="submit">Add to Cart</button>
-                                <input type="hidden" name="productId" value="<%= product.id %>">
-                                <input type="hidden" name="productQty" value="<%= product.quantity %>">
-                            </form>
-                        </div>
-                        <div class="pd-category">
-                            <span>Category :</span>
-                            <h5 class="d-inline-block"><%= categoryName %></h5>
-                        </div>
-                        
+                        <form action="/users/cart" method="post">
+                            <button class="btn btn-primary" type="submit">Add to Cart</button>
+                            <input type="hidden" name="productId" value="<%= product.id %>">
+                            <input type="hidden" name="productQty" value="<%= product.quantity %>">
+                        </form>
                     </div>
+                    <div class="pd-category">
+                        <span>Category :</span>
+                        <h5 class="d-inline-block"><%= categoryName %></h5>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 pd-description">
-                    <h4>Description</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet facilis, cum delectus
-                        eum minus repellat excepturi recusandae mollitia provident harum ipsam molestiae modi
-                        dolorum. Ab, voluptatibus. In distinctio soluta eaque.</p>
-                        
-                </div>
-                <h4 class="col-md-12 text-center mt-5">Rating and Reviews</h4>
-                <div class="col-md-6">
-                    <div class="pd-rating">
-                        <h5 class="text-center">Customer Reviews</h5>
-                        <div class="customer-reviews">
-                            <p>3 Comments</p>
-                            <div class="customer-option">
-                                <div class="co-item">
-                                    <div class="avatar-info">
-                                        <img src="/resources/img/ipad-pro-2018.jpg"
-                                            alt="Profile Picture">
-                                        <h5>Academind <span>23 April 2020</span></h5>
-                                    </div>
-                                    <div class="avator-text">
-                                        <div class="at-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="at-reply">Nice !</div>
-                                    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pd-description">
+                <h4>Description</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet facilis, cum delectus
+                    eum minus repellat excepturi recusandae mollitia provident harum ipsam molestiae modi
+                    dolorum. Ab, voluptatibus. In distinctio soluta eaque.</p>
+
+            </div>
+            <h4 class="col-md-12 text-center mt-5">Rating and Reviews</h4>
+            <div class="col-md-6">
+                <div class="pd-rating">
+                    <h5 class="text-center">Customer Reviews</h5>
+                    <div class="customer-reviews">
+                        <p><%= reviews.length %> Comments</p>
+                        <div class="customer-option">
+                            <% for(let review of reviews){ %>
+                            <div class="co-item">
+                                <div class="avatar-info">
+                                    <img src="/resources/img/ipad-pro-2018.jpg" alt="Profile Picture">
+                                    <h5><%= review.name %> <span><%= review.createdAt.toLocaleDateString('en-Us') %></span></h5>
                                 </div>
-                                <div class="co-item">
-                                    <div class="avatar-info">
-                                        <img src="/resources/img/undraw_profile_pic_ic5t.svg" 
-                                            alt="Profile Picture">
-                                        <h5>Academind <span>23 April 2020</span></h5>
+                                <div class="avator-text">
+                                    <div class="at-rating">
+                                        <% for(let i=0; i< review.ratingNumber;i++){ %>
+                                        <i class="fa fa-star"></i>
+                                        <% } %>
+                                        <% for(let i=5; i > review.ratingNumber;i--){ %>
+                                        <i class="fa fa-star-o"></i>
+                                        <% } %>
+                                        <!-- <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i> -->
                                     </div>
-                                    <div class="avator-text">
-                                        <div class="at-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="at-reply">Nice !</div>
+                                    <div class="at-reply"><%= review.review %></div>
+                                    <% if(review.isReview){ %>
+                                    <div class="review-action">
+                                        <div class="btn btn-success"><i class="fa fa-edit"></i></div>
+                                        <div class="btn btn-danger deleteReviewBtn" data-userId="<%= review.userId %>" data-reviewId="<%= review.id %>"><i class="fa fa-trash"></i></div>
                                     </div>
+                                    <% } %>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="your-rating">
-                        <h5>Your Rating</h5>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <div class="leave-comment">
-                            <h6>Leave A Comment</h6>
-                            <form action="#" class="comment-form">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <textarea name="" id="" cols="25" rows="3" placeholder="Your Review"></textarea>
-                                        <button type="submit" class="btn primary-btn d-block">Submit Review</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <% } %>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="your-rating">
+                    <h5>Your Rating</h5>
+                    <div class="rating">
+                        <i class="fa fa-star-o" id="star-1"></i>
+                        <i class="fa fa-star-o" id="star-2"></i>
+                        <i class="fa fa-star-o" id="star-3"></i>
+                        <i class="fa fa-star-o" id="star-4"></i>
+                        <i class="fa fa-star-o" id="star-5"></i>
+                    </div>
+                    <div class="leave-comment">
+                        <h6>Leave A Comment: </h6>
+                        <form action="" class="form comment-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <!-- <label for="address">Your Review: </label> -->
+                                        <input type="hidden" name="productId" id="productId" value="<%= product.id %>">
+                                        <textarea class="form-control" name="review" id="review" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn primary-btn d-block">Submit Review</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- <div class="pd-rating">
+    </div>
+    <!-- <div class="pd-rating">
                 <h3>Customer Reviews</h3>
 
                 <div class="customer-review-option">
@@ -167,7 +179,7 @@
                             </div>
                         </div>
                     </div> -->
-        <!-- <div class="personal-rating">
+    <!-- <div class="personal-rating">
                         <h6>Your Ratind</h6>
                         <div class="rating">
                             <i class="fa fa-star"></i>
@@ -191,8 +203,11 @@
                 </div>
             </div> -->
 
-    </section>
-    <!--End Product Detail Secction -->
+</section>
+<!--End Product Detail Secction -->
 
-<%- include('./partials/footer.ejs') %>
 
+    <%- include('./partials/footer.ejs') %>
+
+  </div>
+</div>

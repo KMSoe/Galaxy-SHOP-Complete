@@ -12,7 +12,7 @@
         <header>
             <%- include('../partials/navbar.ejs') %>
         </header>
-        <section class="shopping-cart mx-auto">
+        <section class="shopping-cart profile-section mx-auto">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
@@ -42,13 +42,13 @@
                                         </td>
                                         <td class="p-price">$<%= cartItem.price - cartItem.discount %></td>
                                         <td class="p-quantity">
-                                            <div class="quantity">
+                                            <!-- <div class="quantity">
                                                 <div class="pro-qty">
                                                     <span class="dec qtybtn">-</span>
                                                     <input type="text" value="1">
                                                     <span class="inc qtybtn">+</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <%= cartItem.quantity %>
                                         </td>
                                         <td class="total-price">
@@ -56,16 +56,32 @@
                                     </tr>
                                     <% } %>
                                 </tbody>
+                                <tfoot class="checkout">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>Total Quantity</td>
+                                        <td><%= totalQuantity %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>Total Bill</td>
+                                        <td>$<%= totalBill %></td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="cart-buttons">
-                                    <a href="#" class="continue-shop">Continue shopping</a>
-                                    <a href="#" class="clear-cart">Clear cart</a>
+                                    <a href="/shop/products" class="continue-shop">Continue shopping</a>
+                                    <a href="/users/profile/clear-cart" class="clear-cart">Clear cart</a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 offset-lg-4">
+                            <!-- <div class="col-lg-4 offset-lg-4">
                                 <div class="checkout">
                                     <table>
                                         <tbody>
@@ -87,13 +103,31 @@
                                                         <input type="submit" value="Checkout"
                                                             class="btn btn-block btn-primary">
                                                     </form>
-                                                    <!-- <a href="" type="button" class="btn btn-block btn-primary">Checkout</a> -->
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
+                        </div>
+                        <div class="col-sm-12 col-md-6 checkout-form">
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="phoneno">Phone No:</label>
+                                    <input type="text" name="phoneno" class="form-control" id="phoneno"
+                                        aria-describedby="phoneno" placeholder="Enter Phone number" />
+                                    <small id="phoneno" class="form-text text-muted">We'll never share your phone no
+                                        with anyone
+                                        else.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Your Address: </label>
+                                    <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                                </div>
+                                <input type="submit" value="Checkout" class="btn btn-primary">
+
+                            </form>
                         </div>
                     </div>
                 </div>
