@@ -122,4 +122,16 @@ app.use("/users", users);
 //     });
 // });
 
-module.exports = app;
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+const chatController = require("./controllers/chatController");
+io.on("connection", (socket) => {
+  socket.on("chatMessageFromBrowser", async (data) => {
+    const results = await chatController.saveMessage(data);
+    if (results[0].insertId) {
+      socket.broadcast.emit("chatMessageFromServer", { message: data.message });
+    }
+  });
+});
+
+module.exports = server;

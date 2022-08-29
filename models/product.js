@@ -80,14 +80,14 @@ module.exports=class {
     }
     static async getProductAndSellerByCatId(catId){
         try {
-            return await database.query(`select products.*, users.name as username from products left join users on products.userId = users.id where products.catId=?`, [catId]);
+            return await database.query(`select products.*, users.id as sellerId,users.name as username from products left join users on products.userId = users.id where products.catId=?`, [catId]);
         } catch (error) {
             throw error;
         }
     }
     static async getProductAndSellerById(id){
         try {
-            return await database.query(`select products.*, users.name as username from products left join users on products.userId = users.id where products.id= ?`,[id]);
+            return await database.query(`select products.*, users.id as sellerId,users.name as username from products left join users on products.userId = users.id where products.id= ?`,[id]);
         } catch (error) {
             throw error;
         }

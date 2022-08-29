@@ -53,4 +53,6 @@ router.post("/profile/check", userController.checkout);
 router.get("/profile/order", userController.getOrder);
 router.get("/profile/sell", userController.getSellList);
 
+router.get("/:userId", userController.getOtherUserProfile);
+
 module.exports = router;

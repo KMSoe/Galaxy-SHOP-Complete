@@ -417,7 +417,6 @@ exports.getSellList = async (req, res) => {
           items.push(item);
         }
       }
-      console.log(items);
     } else {
     }
   } catch (error) {
@@ -425,3 +424,10 @@ exports.getSellList = async (req, res) => {
   }
   res.redirect("/users/profile");
 };
+exports.getOtherUserProfile = (req, res) => {
+  res.render('other-profile',{
+    path: "/others",
+    isLogin: req.session.isLogin,
+    user: req.session.user
+  });
+}

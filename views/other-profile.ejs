@@ -1,0 +1,46 @@
+<% layout('layout') %>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <%- include('./partials/side.ejs') %>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <header>
+            <%- include('./partials/navbar.ejs') %>
+        </header>
+
+
+        <!--Other`s Profile Secction -->
+        <section class="others-profile-section">
+            <div class="container">
+                <div class="user-profile">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="user-profile-img">
+                                <img class="" src="/resources/img/undraw_profile_pic_ic5t.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="user-profile-info">
+                                <h3>Kaung Myat Soe</h3>
+                                <div class="info">
+                                    <p>joined on 25/7/2020</p>
+                                </div>
+                                <div class="message">
+                                    <a href="" data-senderId="<%= user.id %>" class="btn primary-btn showChatBox"><i class="fa fa-"></i>message</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Other`s Profile Secction -->
+        
+
+        <%- include('./partials/footer.ejs') %>
+
+    </div>
+</div>

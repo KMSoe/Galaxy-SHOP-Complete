@@ -12,9 +12,10 @@ async function createTables(){
         await pool.execute(`create table if not exists carts(id int primary key auto_increment, userId int,foreign key(userId) references users(id))`);
         await pool.execute(`create table if not exists cart_items(id int primary key auto_increment, productId int,cartId int,quantity int,foreign key(productId) references products(id) on delete cascade,foreign key(cartId) references carts(id))`);
         await pool.execute(`create table if not exists reviews(id int primary key auto_increment, ratingNumber int,review varchar(255), productId int, userId int,createdAt datetime, foreign key(productId) references products(id) on delete cascade,foreign key(userId) references users(id) on delete cascade)`);
-        await pool.execute(`create table if not exists search_items(id int primary key auto_increment, productId int, userId int,createdAt datetime, foreign key(productId) references products(id) on delete cascade,foreign key(userId) references users(id) on delete cascade)`);
+        await pool.execute(`create table if not exists search_items(id int primary key auto_increment, productId int,sellerId int, userId int,createdAt datetime, foreign key(productId) references products(id) on delete cascade,foreign key(userId) references users(id) on delete cascade, foreign key(sellerId) references users(id) on delete cascade)`);
         // await pool.execute(`create table if not exists orders(id int primary key auto_increment, userId int,phoneNo varchar(40),address varchar(255),status int,createdDate datetime,modifiedDate datetime,foreign key(userId) references users(id))`);
         // await pool.execute(`create table if not exists order_items(id int primary key auto_increment, productId int,orderId int,quantity int,foreign key(productId) references products(id),foreign key(orderId) references orders(id))`);
+        await pool.execute(`create table if not exists messages(id int primary key auto_increment, senderId int,receiverId int, content varchar(255), timestamp datetime, foreign key(senderId) references users(id) on delete cascade,foreign key(receiverId) references users(id) on delete cascade)`);
     } catch (error) {
         throw error;
     }

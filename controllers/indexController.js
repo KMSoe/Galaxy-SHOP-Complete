@@ -2,15 +2,18 @@ const Product = require("../models/product");
 const Category = require("../models/category");
 const Review = require("../models/reviewModel");
 
-exports.getIndex = function (req, res) {
+exports.getIndex = async (req, res) => {
   let name;
   if (req.session.cookie.originalMaxAge) {
     name = "Kaung Myat";
   }
+  const [categories, info] = await Category.getCategories();
   res.render("index", {
     path: "/",
+    categories,
     isLogin: req.session.isLogin,
     name: name,
+    user: req.session.user
   });
 };
 
@@ -58,6 +61,7 @@ exports.getProductDetail = async (req, res) => {
           review.isReview = true;
         }
       }
+      console.log(rows[0]);
       if (results.length > 0) {
         return res.render("product-detail", {
           path: "/shop/products",

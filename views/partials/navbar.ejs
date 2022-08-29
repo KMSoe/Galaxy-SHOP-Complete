@@ -41,24 +41,28 @@
         </div> -->
 
     </div>
-    <ul class="profile-part">        
+    <ul class="profile-part">
         <% if(isLogin){ %>
-        <li class="">
-            <a class="" href="/signout">Sign out</a>
+        <li class="message">
+            <!-- <a href="" class="btn primary-btn showChatBox"><i class="fa fa-"></i>cb</a> -->
         </li>
+        
         <li>
             <a href="/users/profile" class="profile">
                 <img src="/resources/img/undraw_profile_pic_ic5t.svg" alt="">
             </a>
         </li>
+        <li class="">
+            <a class="" href="/signout">Sign out</a>
+        </li>
         <% }else{ %>
-            <li class="<%= path==='/sign-in' ? 'active':'' %>">
-                <a type="button" class="btn" href="/sign-in">Sign in</a>
-            </li>
-            <li class="<%= path==='/sign-in' ? 'active':'' %>">
-                <a type="button" class="btn btn-outline-primary" href="/sign-up">Sign up</a>
-            </li>
+        <li class="<%= path==='/sign-in' ? 'active':'' %>">
+            <a type="button" class="btn" href="/sign-in">Sign in</a>
+        </li>
+        <li class="<%= path==='/sign-in' ? 'active':'' %>">
+            <a type="button" class="btn btn-outline-primary" href="/sign-up">Sign up</a>
+        </li>
         <% } %>
-        
+
     </ul>
 </nav>
